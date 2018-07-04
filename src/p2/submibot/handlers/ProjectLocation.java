@@ -1,4 +1,4 @@
-package p2.submibot;
+package p2.submibot.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -11,10 +11,10 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 
-public class SubmiBot extends AbstractHandler {
+public class ProjectLocation extends AbstractHandler {
 
     public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+    	IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
 	    if (window != null) {
 	        IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
@@ -25,13 +25,13 @@ public class SubmiBot extends AbstractHandler {
 		            IPath path = project.getLocation();
 		    		MessageDialog.openInformation(
 		    				window.getShell(),
-		    				"Project Location",
+		    				"Localização do projeto",
 		    				path.toString());	
 	            } else {
 		    		MessageDialog.openInformation(
 		    				window.getShell(),
-		    				"Error",
-		    				"Right click a project");
+		    				"Erro",
+		    				"Click sobre um projeto");
 	            }
 	        }
 	    }
