@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Submibot
-Bundle-SymbolicName: p2.submibot
+Bundle-SymbolicName: p2.submibot;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: p2.submibot
+Require-Bundle: org.eclipse.ui
