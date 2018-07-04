@@ -1,5 +1,7 @@
 package p2.submibot.handlers;
 
+import java.io.IOException;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -11,8 +13,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import p2.submibot.util.Zip;
 
-public class ProjectLocation extends AbstractHandler {
+
+public class ProjectZip extends AbstractHandler {
 
     public Object execute(ExecutionEvent event) throws ExecutionException {
     	IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
@@ -24,10 +28,19 @@ public class ProjectLocation extends AbstractHandler {
 	            IProject project = (IProject)((IAdaptable)firstElement).getAdapter(IProject.class);
 	            if (project != null) {
 		            IPath path = project.getLocation();
-		    		MessageDialog.openInformation(
-		    				window.getShell(),
-		    				"Localização do projeto",
-			    			path.toOSString());
+		    		try {
+						Zip.zip(path.toOSString(), 
+								path.toOSString() + IPath.SEPARATOR + project.getName().toString() + ".zip");
+			    		MessageDialog.openInformation(
+			    				window.getShell(),
+			    				"Zip criado com sucesso",
+				    			"Zip do projeto em " + path.toOSString());
+					} catch (IOException e) {
+			    		MessageDialog.openError(
+			    				window.getShell(),
+			    				"Erro",
+				    			"Um erro ocorreu ao tentar criar o zip do projeto");
+					}
 	            } else {
 		    		MessageDialog.openError(
 		    				window.getShell(),
