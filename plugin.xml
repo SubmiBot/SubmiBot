@@ -2,55 +2,37 @@
 
    <extension
          point="org.eclipse.ui.commands">
-      <category
-            id="org.menu.commands.category"
-            name="information">
-      </category>
       <command
-            categoryId="p2.submibot.commands.category"
-            name="Pegar informações"
-            id="p2.submibot.commands.getInformation">
+            name="Localização do projeto"
+            id="p2.submibot.commands.showProjectLocation">
+      </command>
+            <command
+            name="Zipe o projeto"
+            id="p2.submibot.commands.ProjectZip">
       </command>
    </extension>
-   
-      <extension
-         point="org.eclipse.ui.commands">
-      <category
-            id="org.menu.commands.category"
-            name="core">
-      </category>
-      <command
-            categoryId="p2.submibot.commands.category"
-            name="Submeter"
-            id="p2.submibot.commands.submission">
-      </command>
-   </extension>
+
 
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="p2.submibot.SubmiBot"
-            commandId="p2.submibot.commands.getInformation">
+      		class="p2.submibot.handlers.ProjectLocation"
+            commandId="p2.submibot.commands.showProjectLocation">
+      </handler>
+      <handler
+            class="p2.submibot.handlers.ProjectZip"
+            commandId="p2.submibot.commands.ProjectZip">
       </handler>
    </extension>
 
-   <extension
-         point="org.eclipse.ui.bindings">
-      <key
-            commandId="p2.submibot.commands.getInformation"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            contextId="org.eclipse.ui.contexts.window"
-            sequence="M1+8">
-      </key>
-   </extension>
 
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
             locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
             <menu label="SubmiBot">
-                <command commandId="p2.submibot.commands.submission"/>
-                <command commandId="p2.submibot.commands.getInformation"/>
+                <command commandId="p2.submibot.commands.showProjectLocation"/>
+                <command commandId="p2.submibot.commands.ProjectZip"/>
             </menu>
       </menuContribution>
    </extension>

@@ -1,4 +1,7 @@
-package p2.submibot;
+package p2.submibot.handlers;
+
+import java.io.IOException;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -10,11 +13,13 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import p2.submibot.util.Zip;
 
-public class SubmiBot extends AbstractHandler {
+
+public class ProjectZip extends AbstractHandler {
 
     public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+    	IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
 	    if (window != null) {
 	        IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
@@ -23,15 +28,24 @@ public class SubmiBot extends AbstractHandler {
 	            IProject project = (IProject)((IAdaptable)firstElement).getAdapter(IProject.class);
 	            if (project != null) {
 		            IPath path = project.getLocation();
-		    		MessageDialog.openInformation(
-		    				window.getShell(),
-		    				"Project Location",
-		    				path.toString());	
+		    		try {
+						Zip.zip(path.toOSString(), 
+								path.toOSString() + IPath.SEPARATOR + project.getName().toString() + ".zip");
+			    		MessageDialog.openInformation(
+			    				window.getShell(),
+			    				"Zip criado com sucesso",
+				    			"Zip do projeto em " + path.toOSString());
+					} catch (IOException e) {
+			    		MessageDialog.openError(
+			    				window.getShell(),
+			    				"Erro",
+				    			"Um erro ocorreu ao tentar criar o zip do projeto");
+					}
 	            } else {
-		    		MessageDialog.openInformation(
+		    		MessageDialog.openError(
 		    				window.getShell(),
-		    				"Error",
-		    				"Right click a project");
+		    				"Erro",
+		    				"Click sobre um projeto");
 	            }
 	        }
 	    }
