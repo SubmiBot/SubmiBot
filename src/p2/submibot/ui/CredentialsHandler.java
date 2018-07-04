@@ -1,4 +1,4 @@
-package p2.ui;
+package p2.submibot.ui;
 
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
