@@ -107,8 +107,6 @@ public class Dialog extends TitleAreaDialog {
 		return true;
 	}
 
-	// save content of the Text fields because they get disposed
-	// as soon as the Dialog closes
 	private void saveInput() {
 		this.firstName = firstNameText.getText();
 		this.lastName = lastNameText.getText();

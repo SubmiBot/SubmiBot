@@ -2,6 +2,7 @@ package p2.submibot.util;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
@@ -14,7 +15,7 @@ public class ShellActivationTracker implements Listener {
 	}
 
 	@Override
-	public void handleEvent(org.eclipse.swt.widgets.Event event) {
+	public void handleEvent(Event event) {
 		if (event.widget instanceof Shell) {
 			activeShell = (Shell) event.widget;
 		}

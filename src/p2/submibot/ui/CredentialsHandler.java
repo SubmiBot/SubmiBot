@@ -5,47 +5,55 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import p2.submibot.util.ShellActivationTracker;
+
 public class CredentialsHandler {
 
-	private static final Shell SHELL = getActiveShell();
+	private Shell activeShell;
 
-	public static void execute(Shell shell) throws ExecutionException {
-		Dialog dialog = new Dialog(shell);
+	private String nome;
+	private String sobrenome;
+	private String email;
+	private String senha;
 
-		// get the new values from the dialog
+	public CredentialsHandler() {
+		this.activeShell = getActiveShell();
+	}
+
+	public void execute() throws ExecutionException {
+		Dialog dialog = new Dialog(this.activeShell);
+
 		if (dialog.open() == Window.OK) {
-			String nome = dialog.getFirstName();
-			String sobrenome = dialog.getLastName();
-			String email = dialog.getMail();
-			String senha = dialog.getPassword();
-			System.out.println(nome);
-			System.out.println(sobrenome);
-			System.out.println(email);
-			System.out.println(senha);
-			System.out.println(dialog.getFilename());
+			this.nome = dialog.getFirstName();
+			this.sobrenome = dialog.getLastName();
+			this.email = dialog.getMail();
+			this.senha = dialog.getPassword();
 		}
 	}
 
-	public static void main(String[] args) throws ExecutionException {
-		execute(SHELL);
+	private Shell getActiveShell() {
+		Display display = Display.getCurrent();
+		if (display == null)
+			display = Display.getDefault();
+		ShellActivationTracker sat = new ShellActivationTracker(display);
+		System.out.println(sat.getShell() == null);
+		return sat.getShell();
 	}
 
-	private static Shell getActiveShell() {
-		Display display = Display.getDefault();
-		Shell result = display.getActiveShell();
+	public String getNome() {
+		return nome;
+	}
 
-		if (result == null) {
-			Shell[] shells = display.getShells();
-			for (Shell shell : shells) {
-				if (shell.getShells().length == 0) {
-					if (result != null)
-						throw new RuntimeException();
-					result = shell;
-				}
-			}
-		}
+	public String getSobrenome() {
+		return sobrenome;
+	}
 
-		return result;
+	public String getEmail() {
+		return email;
+	}
+
+	public String getSenha() {
+		return senha;
 	}
 
 }
