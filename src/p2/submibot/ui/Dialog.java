@@ -3,6 +3,7 @@ package p2.submibot.ui;
 import java.text.Normalizer;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -119,6 +120,12 @@ public class Dialog extends TitleAreaDialog {
 	protected void okPressed() {
 		saveInput();
 		super.okPressed();
+	}
+	
+	@Override
+	protected void cancelPressed() {
+		MessageDialog.openWarning(getShell(), "Cancelar Submissão", "Deseja realmente cancelar a submissão?");
+		super.cancelPressed();
 	}
 
 	public String getFirstName() {
