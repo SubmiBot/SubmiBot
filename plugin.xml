@@ -10,6 +10,10 @@
             name="Zipe o projeto"
             id="p2.submibot.commands.ProjectZip">
       </command>
+      <command
+      		name="Submeter Projeto"
+      		id="p2.submibot.commands.SubmitProject">
+      </command>
    </extension>
 
 
@@ -23,6 +27,10 @@
             class="p2.submibot.handlers.ProjectZip"
             commandId="p2.submibot.commands.ProjectZip">
       </handler>
+      <handler
+      		class="p2.submibot.handlers.SubmitProject"
+      		commandId="p2.submibot.commands.SubmitProject">
+      </handler>
    </extension>
 
 
@@ -33,6 +41,7 @@
             <menu label="SubmiBot">
                 <command commandId="p2.submibot.commands.showProjectLocation"/>
                 <command commandId="p2.submibot.commands.ProjectZip"/>
+				<command commandId="p2.submibot.commands.SubmitProject"/>
             </menu>
       </menuContribution>
    </extension>

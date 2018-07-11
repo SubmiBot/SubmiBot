@@ -2,10 +2,7 @@ package p2.submibot.ui;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-
-import p2.submibot.util.ShellActivationTracker;
 
 public class CredentialsHandler {
 
@@ -16,8 +13,8 @@ public class CredentialsHandler {
 	private String email;
 	private String senha;
 
-	public CredentialsHandler() {
-		this.activeShell = getActiveShell();
+	public CredentialsHandler(Shell shell) {
+		this.activeShell = shell;
 	}
 
 	public void execute() throws ExecutionException {
@@ -30,16 +27,7 @@ public class CredentialsHandler {
 			this.senha = dialog.getPassword();
 		}
 	}
-
-	private Shell getActiveShell() {
-		Display display = Display.getCurrent();
-		if (display == null)
-			display = Display.getDefault();
-		ShellActivationTracker sat = new ShellActivationTracker(display);
-		System.out.println(sat.getShell() == null);
-		return sat.getShell();
-	}
-
+	
 	public String getNome() {
 		return nome;
 	}

@@ -45,7 +45,7 @@ public class ProjectZip extends AbstractHandler {
 		    		MessageDialog.openError(
 		    				window.getShell(),
 		    				"Erro",
-		    				"Click sobre um projeto");
+		    				"Clique sobre um projeto");
 	            }
 	        }
 	    }
