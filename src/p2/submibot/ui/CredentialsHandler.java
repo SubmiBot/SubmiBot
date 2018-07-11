@@ -6,15 +6,19 @@ import org.eclipse.swt.widgets.Shell;
 
 public class CredentialsHandler {
 
+	
 	private Shell activeShell;
 
 	private String nome;
 	private String sobrenome;
 	private String email;
 	private String senha;
-
+	private String filename;
+	private boolean state;
+	
 	public CredentialsHandler(Shell shell) {
 		this.activeShell = shell;
+		this.state = true;
 	}
 
 	public void execute() throws ExecutionException {
@@ -25,23 +29,21 @@ public class CredentialsHandler {
 			this.sobrenome = dialog.getLastName();
 			this.email = dialog.getMail();
 			this.senha = dialog.getPassword();
+			this.filename = dialog.getFilename();
+			this.state = false;
 		}
 	}
 	
-	public String getNome() {
-		return nome;
-	}
+	public String getNome() { return nome; }
 
-	public String getSobrenome() {
-		return sobrenome;
-	}
+	public String getSobrenome() { return sobrenome; }
 
-	public String getEmail() {
-		return email;
-	}
+	public String getEmail() { return email; }
 
-	public String getSenha() {
-		return senha;
-	}
+	public String getSenha() { return senha; }
 
+	public String getFilename() { return filename; }
+	
+	public boolean getState() { return this.state; }
+	
 }

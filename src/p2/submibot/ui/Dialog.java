@@ -23,11 +23,13 @@ public class Dialog extends TitleAreaDialog {
 	private Text lastNameText;
 	private Text mailText;
 	private Text passwordText;
+	private Text matrText;
 
 	private String firstName;
 	private String lastName;
 	private String mail;
 	private String password;
+	private String matr;
 
 	public Dialog(Shell parentShell) {
 		super(parentShell);
@@ -36,6 +38,7 @@ public class Dialog extends TitleAreaDialog {
 	@Override
 	public void create() {
 		super.create();
+		
 		setTitle("Submibot");
 		setMessage("Submissão de atividades - LP2@UFCG", IMessageProvider.INFORMATION);
 	}
@@ -43,15 +46,19 @@ public class Dialog extends TitleAreaDialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite area = (Composite) super.createDialogArea(parent);
+		
 		Composite container = new Composite(area, SWT.NONE);
 		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		
 		GridLayout layout = new GridLayout(2, false);
 		container.setLayout(layout);
 
 		createFirstName(container);
 		createLastName(container);
+		createMatr(container);
 		createMail(container);
 		createPassword(container);
+		
 		return area;
 	}
 
@@ -74,8 +81,21 @@ public class Dialog extends TitleAreaDialog {
 		GridData lastNameData = new GridData();
 		lastNameData.grabExcessHorizontalSpace = true;
 		lastNameData.horizontalAlignment = GridData.FILL;
+		
 		lastNameText = new Text(container, SWT.BORDER);
 		lastNameText.setLayoutData(lastNameData);
+	}
+	
+	private void createMatr(Composite container) {
+		Label matrLabel = new Label(container, SWT.NONE);
+		matrLabel.setText("Matrícula");
+
+		GridData matrData = new GridData();
+		matrData.grabExcessHorizontalSpace = true;
+		matrData.horizontalAlignment = GridData.FILL;
+		
+		matrText = new Text(container, SWT.BORDER);
+		matrText.setLayoutData(matrData);
 	}
 
 	private void createMail(Composite container) {
@@ -98,6 +118,7 @@ public class Dialog extends TitleAreaDialog {
 		GridData passwordData = new GridData();
 		passwordData.grabExcessHorizontalSpace = true;
 		passwordData.horizontalAlignment = GridData.FILL;
+		
 		passwordText = new Text(container, SWT.BORDER | SWT.PASSWORD);
 		passwordText.setLayoutData(passwordData);
 	}
@@ -112,39 +133,39 @@ public class Dialog extends TitleAreaDialog {
 		this.lastName = lastNameText.getText();
 		this.mail = mailText.getText();
 		this.password = passwordText.getText();
+		this.matr = matrText.getText();
 	}
 
 	@Override
 	protected void okPressed() {
 		saveInput();
+		
 		super.okPressed();
 	}
 	
 	@Override
 	protected void cancelPressed() {
 		MessageDialog.openWarning(getShell(), "Cancelar Submissão", "Deseja realmente cancelar a submissão?");
+		
 		super.cancelPressed();
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
+	public String getFirstName() { return firstName; }
 
-	public String getMail() {
-		return mail;
-	}
+	public String getMail() { return mail; }
 
-	public String getPassword() {
-		return password;
-	}
+	public String getPassword() { return password; }
 
-	public String getLastName() {
-		return lastName;
-	}
+	public String getLastName() { return lastName;}
+	
+	public String getMatr() { return matr; }
 	
 	public String getFilename() {
+		
 		String filename = this.firstName.toUpperCase() + "_" + this.lastName.toUpperCase();
-	    return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+	    
+		return Normalizer
+	    		.normalize(filename, Normalizer.Form.NFD)
+	    		.replaceAll("[^\\p{ASCII}]", "");
 	}
-
 }
