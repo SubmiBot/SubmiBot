@@ -21,12 +21,16 @@ public class SubmitProject extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+		
 		if (window != null) {
 			IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
 			Object firstElement = selection.getFirstElement();
+			
 			if (firstElement instanceof IAdaptable) {
 				IProject project = (IProject) ((IAdaptable) firstElement).getAdapter(IProject.class);
+			
 				if (project != null) {
+				
 					try {
 						CredentialsHandler handler = new CredentialsHandler(window.getShell());
 						handler.execute();
@@ -42,9 +46,11 @@ public class SubmitProject extends AbstractHandler {
 						} catch (IOException e) {
 							MessageDialog.openInformation(window.getShell(), "Erro", "Não foi possível criar o zip do projeto");
 						}
+					
 					} catch (Exception e) {
 						MessageDialog.openError(window.getShell(), "Erro", "Não foi possível efetuar a submissão");
 					}
+					
 				} else {
 					MessageDialog.openError(window.getShell(), "Erro", "Clique sobre um projeto");
 				}

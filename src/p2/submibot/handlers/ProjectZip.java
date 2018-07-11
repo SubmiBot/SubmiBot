@@ -21,12 +21,16 @@ public class ProjectZip extends AbstractHandler {
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
 		if (window != null) {
+			
 			IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
 			Object firstElement = selection.getFirstElement();
+			
 			if (firstElement instanceof IAdaptable) {
 				IProject project = (IProject) ((IAdaptable) firstElement).getAdapter(IProject.class);
+			
 				if (project != null) {
 					IPath path = project.getLocation();
+				
 					try {
 						Zip.zip(path.toOSString(),
 								path.toOSString() + IPath.SEPARATOR + project.getName().toString() + ".zip");
@@ -36,6 +40,7 @@ public class ProjectZip extends AbstractHandler {
 						MessageDialog.openError(window.getShell(), "Erro",
 								"Um erro ocorreu ao tentar criar o zip do projeto");
 					}
+					
 				} else {
 					MessageDialog.openError(window.getShell(), "Erro", "Clique sobre um projeto");
 				}

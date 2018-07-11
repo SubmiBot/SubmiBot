@@ -18,10 +18,13 @@ public class ProjectLocation extends AbstractHandler {
     	IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
 	    if (window != null) {
+	    	
 	        IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
 	        Object firstElement = selection.getFirstElement();
+	        
 	        if (firstElement instanceof IAdaptable) {
 	            IProject project = (IProject)((IAdaptable)firstElement).getAdapter(IProject.class);
+	        
 	            if (project != null) {
 		            IPath path = project.getLocation();
 		    		MessageDialog.openInformation(
@@ -36,7 +39,6 @@ public class ProjectLocation extends AbstractHandler {
 	            }
 	        }
 	    }
-		return null;
+	    return null;
     }
-
 }
