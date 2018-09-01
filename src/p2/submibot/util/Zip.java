@@ -10,7 +10,9 @@ import java.util.zip.ZipOutputStream;
 public class Zip {
 
 	public static void zip(String sourceDirPath, String zipFilePath) throws IOException {
-	    Path zipFileP = Files.createFile(Paths.get(zipFilePath));
+	    
+		Path zipFileP = Files.createFile(Paths.get(zipFilePath));
+		
 		try (ZipOutputStream zipOutputStrem = new ZipOutputStream(Files.newOutputStream(zipFileP))) {
 		    Path sourceDirP = Paths.get(sourceDirPath);
 		    Files.walk(sourceDirP)

@@ -21,36 +21,38 @@ public class SubmitProject extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-		
+
 		if (window != null) {
 			IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
 			Object firstElement = selection.getFirstElement();
-			
+
 			if (firstElement instanceof IAdaptable) {
 				IProject project = (IProject) ((IAdaptable) firstElement).getAdapter(IProject.class);
-			
+
 				if (project != null) {
-				
+
 					try {
 						CredentialsHandler handler = new CredentialsHandler(window.getShell());
 						handler.execute();
-						
-						while(handler.getState()) continue;
-						
+
+						while (handler.getState())
+							continue;
+
 						try {
-
 							IPath path = project.getLocation();
-
-							Zip.zip(path.toOSString(), path.toOSString() + IPath.SEPARATOR + handler.getFilename() + ".zip");
-							MessageDialog.openInformation(window.getShell(), "Zip criado com sucesso", "Zip do projeto em " + path.toOSString());
+							Zip.zip(path.toOSString(),
+									path.toOSString() + IPath.SEPARATOR + handler.getFilename() + ".zip");
+							MessageDialog.openInformation(window.getShell(), "Zip criado com sucesso",
+									"Zip do projeto em " + path.toOSString());
 						} catch (IOException e) {
-							MessageDialog.openInformation(window.getShell(), "Erro", "Não foi possível criar o zip do projeto");
+							MessageDialog.openInformation(window.getShell(), "Erro",
+									"Não foi possível criar o zip do projeto");
 						}
-					
+
 					} catch (Exception e) {
 						MessageDialog.openError(window.getShell(), "Erro", "Não foi possível efetuar a submissão");
 					}
-					
+
 				} else {
 					MessageDialog.openError(window.getShell(), "Erro", "Clique sobre um projeto");
 				}
