@@ -7,4 +7,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: p2.submibot
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ com.google.gson;bundle-version="2.8.2"

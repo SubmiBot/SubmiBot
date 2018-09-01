@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.json.JSONArray;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class InfoService {
 
-	private void getAssignments(String course, String token) throws Exception {
+	private void getUser(String token) throws Exception {
 
-		String url = "https://canvas.instructure.com/api/v1/courses/" + course + "/assignments/";
+		String url = "https://canvas.instructure.com/api/v1/users/self";
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -24,8 +25,6 @@ public class InfoService {
 		con.setRequestMethod("GET");
 
 		int responseCode = con.getResponseCode();
-		System.out.println("\nSending 'GET' request to URL : " + url);
-		System.out.println("Response Code : " + responseCode);
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
@@ -36,21 +35,16 @@ public class InfoService {
 		}
 		in.close();
 
-		// print result
-		System.out.println(response.toString());
-		JSONArray json = new JSONArray(response.toString());
-		List<String> names = new ArrayList<>();
+		Gson gson = new Gson();
+		User user = (User) gson.fromJson(response.toString(), new TypeToken<User>(){}.getType());
 
-		for (int i = 0; i < json.length(); i++) {
-			names.add(json.getJSONObject(i).getString("name"));
-		}
-		
-		System.out.println(Arrays.toString(names.toArray()));
+		// print result
+		System.out.println(user);
 	}
 
 	public static void main(String[] args) throws Exception {
 		InfoService is = new InfoService();
-		is.getAssignments("1374512", "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ");
+		is.getUser("Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ");
 	}
 
 }
