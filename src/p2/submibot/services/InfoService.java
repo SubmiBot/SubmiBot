@@ -12,7 +12,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class InfoService {
 
-	private void getUser(String token) throws Exception {
+	public void getUser(String token) throws Exception {
 
 		String url = "https://canvas.instructure.com/api/v1/users/self";
 
@@ -41,7 +41,7 @@ public class InfoService {
 		System.out.println(user);
 	}
 
-	private void getAssignments(String token) throws Exception {
+	public void getAssignments(String token) throws Exception {
 
 		String url = "https://canvas.instructure.com/api/v1/courses/1374512/assignments";
 
