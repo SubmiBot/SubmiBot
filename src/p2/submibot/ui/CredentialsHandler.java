@@ -9,11 +9,7 @@ public class CredentialsHandler {
 	
 	private Shell activeShell;
 
-	private String nome;
-	private String sobrenome;
-	private String email;
-	private String senha;
-	private String filename;
+	private String nome, sobrenome, senha, filename, assignment;
 	private boolean state;
 	
 	public CredentialsHandler(Shell shell) {
@@ -27,23 +23,21 @@ public class CredentialsHandler {
 		if (dialog.open() == Window.OK) {
 			this.nome = dialog.getFirstName();
 			this.sobrenome = dialog.getLastName();
-			this.email = dialog.getMail();
 			this.senha = dialog.getPassword();
 			this.filename = dialog.getFilename();
+			this.assignment = dialog.getAssignment();
 			this.state = false;
 		}
+		System.out.println(filename);
 	}
 	
 	public String getNome() { return nome; }
 
 	public String getSobrenome() { return sobrenome; }
 
-	public String getEmail() { return email; }
-
 	public String getSenha() { return senha; }
 
 	public String getFilename() { return filename; }
 	
 	public boolean getState() { return this.state; }
-	
 }

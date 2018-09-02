@@ -6,8 +6,11 @@ import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -16,20 +19,9 @@ import org.eclipse.swt.widgets.Text;
 
 public class Dialog extends TitleAreaDialog {
 
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private Text firstNameText, lastNameText, tokenText, matrText;
 
-	private Text firstNameText;
-	private Text lastNameText;
-	private Text mailText;
-	private Text passwordText;
-	private Text matrText;
-
-	private String firstName;
-	private String lastName;
-	private String mail;
-	private String password;
-	private String matr;
+	private String firstName, lastName, token, matr, assignment;
 
 	public Dialog(Shell parentShell) {
 		super(parentShell);
@@ -38,7 +30,6 @@ public class Dialog extends TitleAreaDialog {
 	@Override
 	public void create() {
 		super.create();
-		
 		setTitle("Submibot");
 		setMessage("Submissão de atividades - LP2@UFCG", IMessageProvider.INFORMATION);
 	}
@@ -46,19 +37,19 @@ public class Dialog extends TitleAreaDialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite area = (Composite) super.createDialogArea(parent);
-		
+
 		Composite container = new Composite(area, SWT.NONE);
 		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		
+
 		GridLayout layout = new GridLayout(2, false);
 		container.setLayout(layout);
 
 		createFirstName(container);
 		createLastName(container);
 		createMatr(container);
-		createMail(container);
-		createPassword(container);
-		
+		createToken(container);
+		createCombo(container);
+
 		return area;
 	}
 
@@ -81,11 +72,11 @@ public class Dialog extends TitleAreaDialog {
 		GridData lastNameData = new GridData();
 		lastNameData.grabExcessHorizontalSpace = true;
 		lastNameData.horizontalAlignment = GridData.FILL;
-		
+
 		lastNameText = new Text(container, SWT.BORDER);
 		lastNameText.setLayoutData(lastNameData);
 	}
-	
+
 	private void createMatr(Composite container) {
 		Label matrLabel = new Label(container, SWT.NONE);
 		matrLabel.setText("Matrícula");
@@ -93,34 +84,45 @@ public class Dialog extends TitleAreaDialog {
 		GridData matrData = new GridData();
 		matrData.grabExcessHorizontalSpace = true;
 		matrData.horizontalAlignment = GridData.FILL;
-		
+
 		matrText = new Text(container, SWT.BORDER);
 		matrText.setLayoutData(matrData);
 	}
 
-	private void createMail(Composite container) {
-		Label mailLabel = new Label(container, SWT.NONE);
-		mailLabel.setText("E-mail");
+	private void createCombo(Composite container) {
+		Label comboLabel = new Label(container, SWT.NONE);
+		comboLabel.setText("Selecione a atividade:");
+		Combo c = new Combo(container, SWT.READ_ONLY);
 
-		GridData mailData = new GridData();
-		mailData.grabExcessHorizontalSpace = true;
-		mailData.horizontalAlignment = GridData.FILL;
+		String items[] = { /* Catch from InfoService */ };
+		c.setItems(items);
 
-		mailText = new Text(container, SWT.BORDER);
-		mailText.setLayoutData(mailData);
-		
+		GridData comboData = new GridData();
+		comboData.grabExcessHorizontalSpace = true;
+		comboData.horizontalAlignment = GridData.FILL;
+		c.setLayoutData(comboData);
+
+		c.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				int index = c.getSelectionIndex();
+				String selected = c.getItem(index);
+				assignment = (selected);
+			}
+		});
 	}
 
-	private void createPassword(Composite container) {
-		Label passwordLabel = new Label(container, SWT.NONE);
-		passwordLabel.setText("Senha");
+	private void createToken(Composite container) {
+		Label tokenLabel = new Label(container, SWT.NONE);
+		tokenLabel.setText("Token");
 
-		GridData passwordData = new GridData();
-		passwordData.grabExcessHorizontalSpace = true;
-		passwordData.horizontalAlignment = GridData.FILL;
-		
-		passwordText = new Text(container, SWT.BORDER | SWT.PASSWORD);
-		passwordText.setLayoutData(passwordData);
+		GridData tokenData = new GridData();
+		tokenData.grabExcessHorizontalSpace = true;
+		tokenData.horizontalAlignment = GridData.FILL;
+
+		tokenText = new Text(container, SWT.BORDER);
+		tokenText.setLayoutData(tokenData);
 	}
 
 	@Override
@@ -131,41 +133,48 @@ public class Dialog extends TitleAreaDialog {
 	private void saveInput() {
 		this.firstName = firstNameText.getText();
 		this.lastName = lastNameText.getText();
-		this.mail = mailText.getText();
-		this.password = passwordText.getText();
+		this.token = tokenText.getText();
 		this.matr = matrText.getText();
 	}
 
 	@Override
 	protected void okPressed() {
 		saveInput();
-		
+
 		super.okPressed();
 	}
-	
+
 	@Override
 	protected void cancelPressed() {
 		MessageDialog.openWarning(getShell(), "Cancelar Submissão", "Deseja realmente cancelar a submissão?");
-		
+
 		super.cancelPressed();
 	}
 
-	public String getFirstName() { return firstName; }
+	public String getFirstName() {
+		return firstName;
+	}
 
-	public String getMail() { return mail; }
+	public String getPassword() {
+		return token;
+	}
 
-	public String getPassword() { return password; }
+	public String getLastName() {
+		return lastName;
+	}
 
-	public String getLastName() { return lastName;}
-	
-	public String getMatr() { return matr; }
-	
+	public String getMatr() {
+		return matr;
+	}
+
+	public String getAssignment() {
+		return assignment;
+	}
+
 	public String getFilename() {
-		
-		String filename = this.firstName.toUpperCase() + "_" + this.lastName.toUpperCase();
-	    
-		return Normalizer
-	    		.normalize(filename, Normalizer.Form.NFD)
-	    		.replaceAll("[^\\p{ASCII}]", "");
+
+		String filename = this.firstName.toUpperCase() + "_" + this.lastName.toUpperCase().replaceAll(" ", "_");
+
+		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
 	}
 }
