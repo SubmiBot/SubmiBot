@@ -18,10 +18,11 @@ public class ProjectLocation extends AbstractHandler {
 
     public Object execute(ExecutionEvent event) throws ExecutionException {
     	IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-
+    	
+    	String toShow = "";
 		InfoService is = new InfoService();
 		try {
-			is.getUser("Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ");
+			toShow = is.getUser("Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ");
 		} catch (Exception e) {
 			e.getMessage();
 		}
@@ -39,7 +40,7 @@ public class ProjectLocation extends AbstractHandler {
 		    		MessageDialog.openInformation(
 		    				window.getShell(),
 		    				"Localização do projeto",
-			    			path.toOSString());
+			    			toShow + path.toOSString());
 	            } else {
 		    		MessageDialog.openError(
 		    				window.getShell(),
