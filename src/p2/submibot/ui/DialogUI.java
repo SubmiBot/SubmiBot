@@ -3,7 +3,6 @@ package p2.submibot.ui;
 import java.text.Normalizer;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -14,16 +13,17 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class Dialog extends TitleAreaDialog {
+public class DialogUI extends TitleAreaDialog {
 
 	private Text firstNameText, lastNameText, tokenText, matrText;
 
 	private String firstName, lastName, token, matr, assignment;
 
-	public Dialog(Shell parentShell) {
+	public DialogUI(Shell parentShell) {
 		super(parentShell);
 	}
 
@@ -42,6 +42,10 @@ public class Dialog extends TitleAreaDialog {
 		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		GridLayout layout = new GridLayout(2, false);
+
+		layout.marginHeight = 15;
+		layout.marginWidth = 20;
+
 		container.setLayout(layout);
 
 		createFirstName(container);
@@ -107,8 +111,10 @@ public class Dialog extends TitleAreaDialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				int index = c.getSelectionIndex();
+
 				String selected = c.getItem(index);
 				assignment = (selected);
+
 			}
 		});
 	}
@@ -140,15 +146,19 @@ public class Dialog extends TitleAreaDialog {
 	@Override
 	protected void okPressed() {
 		saveInput();
-
 		super.okPressed();
 	}
 
 	@Override
 	protected void cancelPressed() {
-		MessageDialog.openWarning(getShell(), "Cancelar Submissão", "Deseja realmente cancelar a submissão?");
+		MessageBox messageBox = new MessageBox(getShell(), SWT.ICON_QUESTION | SWT.YES | SWT.NO);
+		messageBox.setMessage("Cancelar Submissão");
+		messageBox.setText("Deseja realmente cancelar a submissão?");
 
-		super.cancelPressed();
+		int response = messageBox.open();
+
+		if (response == SWT.YES)
+			super.cancelPressed();
 	}
 
 	public String getFirstName() {
@@ -172,9 +182,9 @@ public class Dialog extends TitleAreaDialog {
 	}
 
 	public String getFilename() {
+		String filename = (this.firstName.toUpperCase() + " " + this.lastName.toUpperCase() + " " + this.assignment)
+				.trim().replaceAll(" ", "_");
 
-		String filename = this.firstName.toUpperCase() + "_" + this.lastName.toUpperCase().replaceAll(" ", "_");
-
-		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^A-Za-z_]", "");
 	}
 }

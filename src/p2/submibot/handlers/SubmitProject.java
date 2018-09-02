@@ -13,7 +13,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import p2.submibot.ui.CredentialsHandler;
+import p2.submibot.ui.CredentialsUI;
 import p2.submibot.util.Zip;
 
 public class SubmitProject extends AbstractHandler {
@@ -32,7 +32,7 @@ public class SubmitProject extends AbstractHandler {
 				if (project != null) {
 
 					try {
-						CredentialsHandler handler = new CredentialsHandler(window.getShell());
+						CredentialsUI handler = new CredentialsUI(window.getShell());
 						handler.execute();
 
 						while (handler.getState())
