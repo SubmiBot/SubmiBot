@@ -12,7 +12,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class InfoService {
 
-	private void getUser(String token) throws Exception {
+	public String getUser(String token) throws Exception {
 
 		String url = "https://canvas.instructure.com/api/v1/users/self";
 
@@ -38,10 +38,10 @@ public class InfoService {
 		User user = (User) gson.fromJson(response.toString(), new TypeToken<User>(){}.getType());
 
 		// print result
-		System.out.println(user);
+		return user.toString();
 	}
 
-	private void getAssignments(String token) throws Exception {
+	public String getAssignments(String token) throws Exception {
 
 		String url = "https://canvas.instructure.com/api/v1/courses/1374512/assignments";
 
@@ -67,14 +67,13 @@ public class InfoService {
 		@SuppressWarnings("unchecked")
 		List<Assignment> assigs = (ArrayList<Assignment>) gson.fromJson(response.toString(), new TypeToken<ArrayList<Assignment>>(){}.getType());
 
-		// print result
-		System.out.println(assigs);
+		return assigs.toString();
 	}
 	
 	public static void main(String[] args) throws Exception {
 		InfoService is = new InfoService();
-		is.getUser("Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ");
-		is.getAssignments("Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ");
+		System.out.println(is.getUser("Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"));
+		System.out.println(is.getAssignments("Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"));
 	}
 
 }
