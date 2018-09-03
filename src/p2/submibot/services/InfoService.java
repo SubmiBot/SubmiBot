@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -137,17 +136,12 @@ public class InfoService {
 
 
 		MultipartUtility mu = new MultipartUtility(re.toString(), "UTF-8");
-		mu.addFilePart("", new File("/home/fernandes/Desktop/irene.jpg"));
+		mu.addFilePart("", new File("/home/fernandes/Desktop/irene.zip"));
 		List<String> res = mu.finish();
 		Response resp = (Response) gson.fromJson(res.get(0), new TypeToken<Response>(){}.getType());
-		System.out.println(resp);
 
 		String respo = submit(resp.toString());
 		System.out.println(respo);
-//		mu = new MultipartUtility("http://httpbin.org/post", "UTF-8");
-//		mu.addFormField("submission[file_ids][]", resp.toString());
-//		mu.addFormField("submission[submission_type]", "online_upload");
-//		System.out.println(mu.finish());
 	}
 
 }
