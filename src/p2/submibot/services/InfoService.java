@@ -129,7 +129,6 @@ public class InfoService {
 //		System.out.println(getUser(token));
 //		System.out.println(getAssignments(token));
 
-
 		Gson gson = new Gson();
 		String r = postFile(token, "9002458");
 		FileUploadPermission re = (FileUploadPermission) gson.fromJson(r, new TypeToken<FileUploadPermission>(){}.getType());
