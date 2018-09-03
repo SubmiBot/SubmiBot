@@ -1,4 +1,4 @@
-package p2.submibot.services;
+package p2.submibot.resources;
 
 public class FileUploadPermission {
 	String upload_url;

@@ -11,21 +11,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import p2.submibot.services.InfoService;
-
 
 public class ProjectLocation extends AbstractHandler {
 
     public Object execute(ExecutionEvent event) throws ExecutionException {
     	IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-    	
-    	String toShow = "";
-		InfoService is = new InfoService();
-		try {
-			toShow = is.getUser("Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ");
-		} catch (Exception e) {
-			e.getMessage();
-		}
 
 	    if (window != null) {
 	    	
@@ -40,7 +30,7 @@ public class ProjectLocation extends AbstractHandler {
 		    		MessageDialog.openInformation(
 		    				window.getShell(),
 		    				"Localização do projeto",
-			    			toShow + path.toOSString());
+		    				path.toOSString());
 	            } else {
 		    		MessageDialog.openError(
 		    				window.getShell(),

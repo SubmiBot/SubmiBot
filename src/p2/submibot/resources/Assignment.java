@@ -1,6 +1,6 @@
-package p2.submibot.services;
+package p2.submibot.resources;
 
-public class User {
+public class Assignment {
 
 	String id;
 	String name;
