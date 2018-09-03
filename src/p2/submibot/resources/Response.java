@@ -1,10 +1,10 @@
 package p2.submibot.resources;
 
 public class Response {
-	String id;
+	private String id;
 
 	@Override
 	public String toString() {
-		return id;
+		return this.id;
 	}
 }

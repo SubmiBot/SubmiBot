@@ -3,6 +3,7 @@ package p2.submibot.services;
 import p2.submibot.resources.Assignment;
 import p2.submibot.resources.FileUploadPermission;
 import p2.submibot.resources.Response;
+import p2.submibot.resources.Submission;
 import p2.submibot.util.MultipartUtility;
 
 import java.io.BufferedReader;
@@ -78,7 +79,8 @@ public class Requests {
 		Response resp = (Response) gson.fromJson(res.get(0), new TypeToken<Response>(){}.getType());
 		
 		String respo = this.submit(assignment, resp.toString());
-		return respo;
+		Submission response = (Submission) gson.fromJson(respo, new TypeToken<Submission>(){}.getType());
+		return response.toString();
 	}
 
 	private String submit(String assignment, String id) throws IOException {
