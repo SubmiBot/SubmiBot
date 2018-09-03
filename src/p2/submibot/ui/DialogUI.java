@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import p2.submibot.services.CacheStorage;
+import p2.submibot.services.Persistence;
 
 public class DialogUI extends TitleAreaDialog {
 
@@ -55,7 +55,7 @@ public class DialogUI extends TitleAreaDialog {
 		createLastName(container);
 		createMatr(container);
 		try {
-			if (CacheStorage.readUserInfo() == null)
+			if (Persistence.readUserInfo() == null)
 				createToken(container);
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
@@ -153,7 +153,7 @@ public class DialogUI extends TitleAreaDialog {
 
 		if (this.token == null) {
 			try {
-				this.token = CacheStorage.readUserInfo().getToken();
+				this.token = Persistence.readUserInfo().getToken();
 			} catch (ClassNotFoundException | IOException e) {
 				e.printStackTrace();
 			}

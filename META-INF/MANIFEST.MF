@@ -8,5 +8,4 @@ Automatic-Module-Name: p2.submibot
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
- com.google.gson;bundle-version="2.8.2",
- org.apache.httpcomponents.httpclient;bundle-version="4.5.2"
+ com.google.gson;bundle-version="2.8.2"

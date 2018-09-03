@@ -1,28 +1,30 @@
-package p2.submibot.services;
+package p2.submibot.resources;
 
 import java.io.Serializable;
 
 public class UserInfo implements Serializable {
 
+	private String name;
+	
+	private String token;
+	
 	private static final long serialVersionUID = 1L;
 
-	private String token, matr;
-
-	public UserInfo(String token, String matr) {
+	public UserInfo(String name, String token) {
+		this.name = name;
 		this.token = token;
-		this.matr = matr;
 	}
+
+	public String getName() {
+		return this.name;
+	}	
 
 	public String getToken() {
 		return token;
 	}
 
-	public String getMatr() {
-		return this.matr;
-	}
-
 	@Override
 	public String toString() {
-		return this.matr + " - " + this.token;
+		return this.name + " - " + this.token;
 	}
 }
