@@ -1,12 +1,10 @@
 package p2.submibot.services;
 
-public class User {
-
-	String id;
-	String name;
+public class FileUploadPermission {
+	String upload_url;
 	
 	@Override
 	public String toString() {
-		return this.name;
+		return upload_url;
 	}
 }

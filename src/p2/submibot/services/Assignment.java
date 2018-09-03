@@ -7,6 +7,6 @@ public class Assignment {
 	
 	@Override
 	public String toString() {
-		return "id: " + this.id + "\nname: " + this.name + '\n';
+		return this.name;
 	}
 }
