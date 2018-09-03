@@ -1,5 +1,6 @@
 package p2.submibot.ui;
 
+import java.io.IOException;
 import java.text.Normalizer;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -16,6 +17,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+
+import p2.submibot.services.CacheStorage;
 
 public class DialogUI extends TitleAreaDialog {
 
@@ -51,7 +54,14 @@ public class DialogUI extends TitleAreaDialog {
 		createFirstName(container);
 		createLastName(container);
 		createMatr(container);
-		createToken(container);
+		try {
+			if (CacheStorage.readUserInfo() == null)
+				createToken(container);
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+
+		}
+
 		createCombo(container);
 
 		return area;
@@ -137,10 +147,23 @@ public class DialogUI extends TitleAreaDialog {
 	}
 
 	private void saveInput() {
-		this.firstName = firstNameText.getText();
-		this.lastName = lastNameText.getText();
-		this.token = tokenText.getText();
-		this.matr = matrText.getText();
+		this.firstName = catchText(firstNameText);
+		this.lastName = catchText(lastNameText);
+		this.token = catchText(tokenText);
+
+		if (this.token == null) {
+			try {
+				this.token = CacheStorage.readUserInfo().getToken();
+			} catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		this.matr = catchText(matrText);
+	}
+
+	private String catchText(Text text) {
+		return (text != null) ? text.getText() : null;
 	}
 
 	@Override
