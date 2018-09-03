@@ -4,21 +4,19 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 
-public class CredentialsHandler {
-
+public class CredentialsUI {
 	
 	private Shell activeShell;
-
 	private String nome, sobrenome, senha, filename, assignment;
 	private boolean state;
 	
-	public CredentialsHandler(Shell shell) {
+	public CredentialsUI(Shell shell) {
 		this.activeShell = shell;
 		this.state = true;
 	}
 
 	public void execute() throws ExecutionException {
-		Dialog dialog = new Dialog(this.activeShell);
+		DialogUI dialog = new DialogUI(this.activeShell);
 
 		if (dialog.open() == Window.OK) {
 			this.nome = dialog.getFirstName();
@@ -28,7 +26,6 @@ public class CredentialsHandler {
 			this.assignment = dialog.getAssignment();
 			this.state = false;
 		}
-		System.out.println(filename);
 	}
 	
 	public String getNome() { return nome; }
@@ -40,4 +37,6 @@ public class CredentialsHandler {
 	public String getFilename() { return filename; }
 	
 	public boolean getState() { return this.state; }
+	
+	public String getAssignment() { return this.assignment; }
 }
