@@ -28,7 +28,9 @@ public class DialogUI extends TitleAreaDialog {
 	private Text firstNameText, lastNameText, matrText;
 
 	private String firstName, lastName, matr, token, assignment;
-
+	
+	private List<Assignment> assignments;
+	
 	public DialogUI(Shell parentShell, String token) {
 		super(parentShell);
 		this.token = token;
@@ -110,8 +112,8 @@ public class DialogUI extends TitleAreaDialog {
 		String[] combo = new String[0];
 		try {
 			String names = "";
-			List<Assignment> assignments = req.getAssignments();
-			for (Assignment a : assignments)
+			this.assignments = req.getAssignments();
+			for (Assignment a : this.assignments)
 				names += a.getName() + "/";
 			combo = names.split("/");
 		} catch (Exception e1) {
@@ -200,6 +202,10 @@ public class DialogUI extends TitleAreaDialog {
 		return assignment;
 	}
 
+	public List<Assignment> getAssignments() {
+		return assignments;
+	}
+	
 	public String getFilename() {
 		String filename = (this.firstName.toUpperCase() + " " + this.lastName.toUpperCase() + " " + this.assignment)
 				.trim().replaceAll(" ", "_");

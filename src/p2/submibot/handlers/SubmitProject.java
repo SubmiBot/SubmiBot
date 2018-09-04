@@ -35,7 +35,7 @@ public class SubmitProject extends AbstractHandler {
 				if (project != null) {
 
 					try {
-						CredentialsUI handler = new CredentialsUI(window.getShell(), event);
+						CredentialsUI handler = new CredentialsUI(window.getShell());
 						handler.execute();
 
 						while (handler.getState())
@@ -50,19 +50,15 @@ public class SubmitProject extends AbstractHandler {
 						} catch (IOException e) {
 							MessageDialog.openInformation(window.getShell(), "Erro",
 									"Não foi possível criar o zip do projeto");
+							e.printStackTrace();
 						}
-						
+
 						Requests req = new Requests(handler.getToken(), "1374512");
-						String selectedAssignment = "";
+
 						try {
-							List<Assignment> assignments = req.getAssignments();
-							for (Assignment a : assignments) {
-								if (a.getName().equals(handler.getAssignment())) {
-									selectedAssignment = a.getId();
-								}
-							}
-							System.out.println(req.submitAssignment(selectedAssignment,
-									new ProjectLocation().execute(event) + System.getProperty("file.separator") + handler.getFilename() + ".zip"));
+							System.out
+									.println(req.submitAssignment(handler.getId(), new ProjectLocation().execute(event)
+											+ System.getProperty("file.separator") + handler.getFilename() + ".zip"));
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
