@@ -13,8 +13,9 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 
 public class ProjectLocation extends AbstractHandler {
-
-    public Object execute(ExecutionEvent event) throws ExecutionException {
+	
+    public String execute(ExecutionEvent event) throws ExecutionException {
+    	String filePath = "";
     	IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
 	    if (window != null) {
@@ -31,6 +32,7 @@ public class ProjectLocation extends AbstractHandler {
 		    				window.getShell(),
 		    				"Localização do projeto",
 		    				path.toOSString());
+		    				filePath = path.toOSString();
 	            } else {
 		    		MessageDialog.openError(
 		    				window.getShell(),
@@ -39,6 +41,6 @@ public class ProjectLocation extends AbstractHandler {
 	            }
 	        }
 	    }
-	    return null;
+	    return filePath;
     }
 }

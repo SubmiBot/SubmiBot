@@ -2,6 +2,7 @@ package p2.submibot.ui;
 
 import java.io.IOException;
 import java.text.Normalizer;
+import java.util.List;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -18,16 +19,19 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import p2.submibot.resources.Assignment;
 import p2.submibot.services.Persistence;
+import p2.submibot.services.Requests;
 
 public class DialogUI extends TitleAreaDialog {
 
-	private Text firstNameText, lastNameText, tokenText, matrText;
+	private Text firstNameText, lastNameText, matrText;
 
-	private String firstName, lastName, token, matr, assignment;
+	private String firstName, lastName, matr, token, assignment;
 
-	public DialogUI(Shell parentShell) {
+	public DialogUI(Shell parentShell, String token) {
 		super(parentShell);
+		this.token = token;
 	}
 
 	@Override
@@ -54,14 +58,12 @@ public class DialogUI extends TitleAreaDialog {
 		createFirstName(container);
 		createLastName(container);
 		createMatr(container);
-		try {
-			if (Persistence.readUserInfo() == null)
-				createToken(container);
-		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
-
-		}
-
+		/*
+		 * try { if (Persistence.readUserInfo() == null) createToken(container); } catch
+		 * (ClassNotFoundException | IOException e) { e.printStackTrace();
+		 * 
+		 * }
+		 */
 		createCombo(container);
 
 		return area;
@@ -104,11 +106,22 @@ public class DialogUI extends TitleAreaDialog {
 	}
 
 	private void createCombo(Composite container) {
+		Requests req = new Requests(token, "1374512"/*"1388632"*/);
+		String[] combo = new String[0];
+		try {
+			String names = "";
+			List<Assignment> assignments = req.getAssignments();
+			for (Assignment a : assignments)
+				names += a.getName() + "/";
+			combo = names.split("/");
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
 		Label comboLabel = new Label(container, SWT.NONE);
 		comboLabel.setText("Selecione a atividade:");
 		Combo c = new Combo(container, SWT.READ_ONLY);
-
-		String items[] = { /* Catch from InfoService */ };
+		String items[] = combo;
 		c.setItems(items);
 
 		GridData comboData = new GridData();
@@ -129,18 +142,6 @@ public class DialogUI extends TitleAreaDialog {
 		});
 	}
 
-	private void createToken(Composite container) {
-		Label tokenLabel = new Label(container, SWT.NONE);
-		tokenLabel.setText("Token");
-
-		GridData tokenData = new GridData();
-		tokenData.grabExcessHorizontalSpace = true;
-		tokenData.horizontalAlignment = GridData.FILL;
-
-		tokenText = new Text(container, SWT.BORDER);
-		tokenText.setLayoutData(tokenData);
-	}
-
 	@Override
 	protected boolean isResizable() {
 		return true;
@@ -149,7 +150,6 @@ public class DialogUI extends TitleAreaDialog {
 	private void saveInput() {
 		this.firstName = catchText(firstNameText);
 		this.lastName = catchText(lastNameText);
-		this.token = catchText(tokenText);
 
 		if (this.token == null) {
 			try {
@@ -181,15 +181,11 @@ public class DialogUI extends TitleAreaDialog {
 		int response = messageBox.open();
 
 		if (response == SWT.YES)
-			super.cancelPressed();
+			System.exit(0);
 	}
 
 	public String getFirstName() {
 		return firstName;
-	}
-
-	public String getPassword() {
-		return token;
 	}
 
 	public String getLastName() {

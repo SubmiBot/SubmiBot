@@ -74,7 +74,7 @@ public class Requests {
 		FileUploadPermission re = (FileUploadPermission) gson.fromJson(r, new TypeToken<FileUploadPermission>(){}.getType());		
 
 		MultipartUtility mu = new MultipartUtility(re.toString(), "UTF-8");
-		mu.addFilePart("", new File("/home/fernandes/Desktop/irene.jpg"));
+		mu.addFilePart("", new File(filename));
 		List<String> res = mu.finish();
 		Response resp = (Response) gson.fromJson(res.get(0), new TypeToken<Response>(){}.getType());
 		

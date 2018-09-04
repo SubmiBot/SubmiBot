@@ -1,6 +1,7 @@
 package p2.submibot.handlers;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -13,6 +14,8 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import p2.submibot.resources.Assignment;
+import p2.submibot.services.Requests;
 import p2.submibot.ui.CredentialsUI;
 import p2.submibot.util.Zip;
 
@@ -32,7 +35,7 @@ public class SubmitProject extends AbstractHandler {
 				if (project != null) {
 
 					try {
-						CredentialsUI handler = new CredentialsUI(window.getShell());
+						CredentialsUI handler = new CredentialsUI(window.getShell(), event);
 						handler.execute();
 
 						while (handler.getState())
@@ -47,6 +50,21 @@ public class SubmitProject extends AbstractHandler {
 						} catch (IOException e) {
 							MessageDialog.openInformation(window.getShell(), "Erro",
 									"Não foi possível criar o zip do projeto");
+						}
+						
+						Requests req = new Requests(handler.getToken(), "1374512");
+						String selectedAssignment = "";
+						try {
+							List<Assignment> assignments = req.getAssignments();
+							for (Assignment a : assignments) {
+								if (a.getName().equals(handler.getAssignment())) {
+									selectedAssignment = a.getId();
+								}
+							}
+							System.out.println(req.submitAssignment(selectedAssignment,
+									new ProjectLocation().execute(event) + System.getProperty("file.separator") + handler.getFilename() + ".zip"));
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
 
 					} catch (Exception e) {
