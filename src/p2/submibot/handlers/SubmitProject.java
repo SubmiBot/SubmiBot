@@ -36,7 +36,7 @@ public class SubmitProject extends AbstractHandler {
 
 					try {
 						CredentialsUI handler = new CredentialsUI(window.getShell());
-						handler.execute();
+						Requests req = handler.execute();
 
 						while (handler.getState())
 							continue;
@@ -52,9 +52,7 @@ public class SubmitProject extends AbstractHandler {
 									"Não foi possível criar o zip do projeto");
 							e.printStackTrace();
 						}
-
-						Requests req = new Requests(handler.getToken(), "1374512");
-
+						
 						try {
 							System.out
 									.println(req.submitAssignment(handler.getId(), new ProjectLocation().execute(event)

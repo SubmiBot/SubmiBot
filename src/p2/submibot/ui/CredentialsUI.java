@@ -1,12 +1,15 @@
 package p2.submibot.ui;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
+import org.omg.CORBA.Request;
 
 import p2.submibot.resources.Assignment;
+import p2.submibot.services.Requests;
 
 public class CredentialsUI {
 
@@ -20,14 +23,14 @@ public class CredentialsUI {
 		this.state = true;
 	}
 
-	public void execute() throws ExecutionException {
+	public Requests execute() throws ExecutionException {
 		TokenDialog tokenDialog = new TokenDialog(this.activeShell, "Submibot", "Insira seu token para continuar",
 				token, null);
 
 		if (tokenDialog.open() == Window.OK) {
 			this.token = tokenDialog.getToken();
 		}
-
+		System.out.println(token);
 		DialogUI dialog = new DialogUI(this.activeShell, token);
 		if (dialog.open() == Window.OK) {
 			this.nome = dialog.getFirstName();
@@ -37,7 +40,16 @@ public class CredentialsUI {
 			this.assignments = dialog.getAssignments();
 			this.state = false;
 		}
-	}
+		
+		return dialog.getRequests();
+		
+/*		try {
+			String resp = req.submitAssignment("9537389", "/home/hericlesegs/Firefox_wallpaper.png");
+			System.out.println(resp);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+*/	}
 
 	public String getNome() {
 		return nome;
@@ -69,9 +81,11 @@ public class CredentialsUI {
 
 	public String getId() {
 		for (Assignment a : assignments)
-			if (a.getName().equals(this.assignment)) {
-				System.out.println(a.getId());
-				return a.getId();
+			if (a != null) {
+				if (a.getName().equals(this.assignment)) {
+					System.out.println(a.getId());
+					return a.getId();
+				}
 			}
 		return null;
 	}

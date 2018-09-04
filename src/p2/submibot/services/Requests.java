@@ -106,7 +106,7 @@ public class Requests {
 
 	public static void main(String[] args) throws Exception {
 		Requests req = new Requests("7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ", "1374512");
-		String resp = req.submitAssignment("9002458", "/home/fernandes/Desktop/irene.jpg");
+		String resp = req.submitAssignment("9537389", "/home/hericlesegs/Firefox_wallpaper.png");
 		System.out.println(resp);
 	}
 }

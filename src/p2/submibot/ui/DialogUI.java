@@ -28,12 +28,15 @@ public class DialogUI extends TitleAreaDialog {
 	private Text firstNameText, lastNameText, matrText;
 
 	private String firstName, lastName, matr, token, assignment;
-	
+
 	private List<Assignment> assignments;
-	
+
+	private Requests request;
+
 	public DialogUI(Shell parentShell, String token) {
 		super(parentShell);
 		this.token = token;
+		this.request = new Requests(token, "1374512"/* "1388632" */);
 	}
 
 	@Override
@@ -108,18 +111,17 @@ public class DialogUI extends TitleAreaDialog {
 	}
 
 	private void createCombo(Composite container) {
-		Requests req = new Requests(token, "1374512"/*"1388632"*/);
 		String[] combo = new String[0];
 		try {
 			String names = "";
-			this.assignments = req.getAssignments();
+			this.assignments = request.getAssignments();
 			for (Assignment a : this.assignments)
 				names += a.getName() + "/";
 			combo = names.split("/");
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
+
 		Label comboLabel = new Label(container, SWT.NONE);
 		comboLabel.setText("Selecione a atividade:");
 		Combo c = new Combo(container, SWT.READ_ONLY);
@@ -206,6 +208,10 @@ public class DialogUI extends TitleAreaDialog {
 		return assignments;
 	}
 	
+	public Requests getRequests() {
+		return this.request;
+	}
+
 	public String getFilename() {
 		String filename = (this.firstName.toUpperCase() + " " + this.lastName.toUpperCase() + " " + this.assignment)
 				.trim().replaceAll(" ", "_");
