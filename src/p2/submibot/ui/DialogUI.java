@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.text.Normalizer;
 import java.util.List;
 
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -32,10 +35,13 @@ public class DialogUI extends TitleAreaDialog {
 	private List<Assignment> assignments;
 
 	private Requests request;
+	
+	private int status;
 
 	public DialogUI(Shell parentShell, String token) {
 		super(parentShell);
 		this.token = token;
+		this.status = SWT.OPEN;
 		this.request = new Requests(token, "1374512"/* "1388632" */);
 	}
 
@@ -63,12 +69,6 @@ public class DialogUI extends TitleAreaDialog {
 		createFirstName(container);
 		createLastName(container);
 		createMatr(container);
-		/*
-		 * try { if (Persistence.readUserInfo() == null) createToken(container); } catch
-		 * (ClassNotFoundException | IOException e) { e.printStackTrace();
-		 * 
-		 * }
-		 */
 		createCombo(container);
 
 		return area;
@@ -84,6 +84,17 @@ public class DialogUI extends TitleAreaDialog {
 
 		firstNameText = new Text(container, SWT.BORDER);
 		firstNameText.setLayoutData(firstNameData);
+		firstNameText.addModifyListener(new ModifyListener() {
+
+			@Override
+			public void modifyText(ModifyEvent e) {
+				Text text = (Text) e.widget;
+				if (text.getText().isEmpty())
+					getButton(IDialogConstants.OK_ID).setEnabled(false);
+				else
+					getButton(IDialogConstants.OK_ID).setEnabled(true);
+			}
+		});
 	}
 
 	private void createLastName(Composite container) {
@@ -178,14 +189,10 @@ public class DialogUI extends TitleAreaDialog {
 
 	@Override
 	protected void cancelPressed() {
-		MessageBox messageBox = new MessageBox(getShell(), SWT.ICON_QUESTION | SWT.YES | SWT.NO);
-		messageBox.setMessage("Cancelar Submissão");
-		messageBox.setText("Deseja realmente cancelar a submissão?");
-
-		int response = messageBox.open();
-
-		if (response == SWT.YES)
-			System.exit(0);
+		if (Dialogs.cancelSubmission(getShell()) == SWT.YES) {
+			this.status = SWT.CANCEL;
+			super.cancelPressed();
+		}
 	}
 
 	public String getFirstName() {
@@ -207,7 +214,7 @@ public class DialogUI extends TitleAreaDialog {
 	public List<Assignment> getAssignments() {
 		return assignments;
 	}
-	
+
 	public Requests getRequests() {
 		return this.request;
 	}
@@ -217,5 +224,9 @@ public class DialogUI extends TitleAreaDialog {
 				.trim().replaceAll(" ", "_");
 
 		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^A-Za-z_]", "");
+	}
+	
+	public int getStatus() {
+		return this.status;
 	}
 }

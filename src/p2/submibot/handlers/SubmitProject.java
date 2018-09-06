@@ -37,36 +37,35 @@ public class SubmitProject extends AbstractHandler {
 					try {
 						CredentialsUI handler = new CredentialsUI(window.getShell());
 						Requests req = handler.execute();
+						System.out.println(req);
+						if (req != null) {
+							try {
+								IPath path = project.getLocation();
+								Zip.zip(path.toOSString(),
+										path.toOSString() + IPath.SEPARATOR + handler.getFilename() + ".zip");
+								MessageDialog.openInformation(window.getShell(), "Zip criado com sucesso",
+										"Zip do projeto em " + path.toOSString());
+							} catch (IOException e) {
+								MessageDialog.openInformation(window.getShell(), "Erro",
+										"Não foi possível criar o zip do projeto");
+								e.printStackTrace();
+							}
 
-						while (handler.getState())
-							continue;
+							try {
+								System.out.println(req.submitAssignment(handler.getId(),
+										new ProjectLocation().execute(event) + System.getProperty("file.separator")
+												+ handler.getFilename() + ".zip"));
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
 
-						try {
-							IPath path = project.getLocation();
-							Zip.zip(path.toOSString(),
-									path.toOSString() + IPath.SEPARATOR + handler.getFilename() + ".zip");
-							MessageDialog.openInformation(window.getShell(), "Zip criado com sucesso",
-									"Zip do projeto em " + path.toOSString());
-						} catch (IOException e) {
-							MessageDialog.openInformation(window.getShell(), "Erro",
-									"Não foi possível criar o zip do projeto");
-							e.printStackTrace();
 						}
-						
-						try {
-							System.out
-									.println(req.submitAssignment(handler.getId(), new ProjectLocation().execute(event)
-											+ System.getProperty("file.separator") + handler.getFilename() + ".zip"));
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-
 					} catch (Exception e) {
-						MessageDialog.openError(window.getShell(), "Erro", "Não foi possível efetuar a submissão");
+						MessageDialog.openInformation(window.getShell(), "Submibot", "Não foi possível efetuar a submissão");
 					}
 
 				} else {
-					MessageDialog.openError(window.getShell(), "Erro", "Clique sobre um projeto");
+					MessageDialog.openInformation(window.getShell(), "Submibot", "Clique sobre um projeto");
 				}
 			}
 		}

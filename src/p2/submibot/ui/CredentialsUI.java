@@ -5,51 +5,69 @@ import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.window.Window;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
-import org.omg.CORBA.Request;
 
 import p2.submibot.resources.Assignment;
+import p2.submibot.resources.UserInfo;
+import p2.submibot.services.Persistence;
 import p2.submibot.services.Requests;
 
 public class CredentialsUI {
 
+	private final Requests CANCEL = null;
+
+	private UserInfo uInfo;
 	private Shell activeShell;
 	private String nome, sobrenome, senha, filename, assignment, token;
-	List<Assignment> assignments;
-	private boolean state;
+	private List<Assignment> assignments;
 
-	public CredentialsUI(Shell shell) {
+	public CredentialsUI(Shell shell) throws ClassNotFoundException, IOException {
 		this.activeShell = shell;
-		this.state = true;
+		this.uInfo = Persistence.readUserInfo();
 	}
 
-	public Requests execute() throws ExecutionException {
-		TokenDialog tokenDialog = new TokenDialog(this.activeShell, "Submibot", "Insira seu token para continuar",
-				token, null);
+	public Requests execute() throws ExecutionException, IOException {
 
-		if (tokenDialog.open() == Window.OK) {
-			this.token = tokenDialog.getToken();
+		if (uInfo == null) {
+			TokenDialog tokenDialog = Dialogs.tokenDialog(activeShell);
+			switch (tokenDialog.open()) {
+
+			case Window.OK:
+				this.token = tokenDialog.getToken();
+				break;
+			default:
+				tokenDialog.cancelPressed();
+			}
+
+			if (tokenDialog.getStatus() == SWT.CANCEL)
+				return CANCEL;
+			
+		} else {
+			this.token = uInfo.getToken();
 		}
-		System.out.println(token);
+
+		if (token.trim().equals("")) {
+			Dialogs.invalidToken(activeShell);
+			throw new IllegalArgumentException("Token Invalido");
+		}
+		
 		DialogUI dialog = new DialogUI(this.activeShell, token);
-		if (dialog.open() == Window.OK) {
-			this.nome = dialog.getFirstName();
-			this.sobrenome = dialog.getLastName();
-			this.filename = dialog.getFilename();
-			this.assignment = dialog.getAssignment();
-			this.assignments = dialog.getAssignments();
-			this.state = false;
+		switch (dialog.open()) {
+
+		case Window.OK:
+
+			if (dialog.open() == Window.OK) {
+				saveCredentials(dialog);
+				Persistence.writeUserInfo(nome + " " + sobrenome, token);
+			}
+			break;
+		default:
+			dialog.cancelPressed();
 		}
-		
-		return dialog.getRequests();
-		
-/*		try {
-			String resp = req.submitAssignment("9537389", "/home/hericlesegs/Firefox_wallpaper.png");
-			System.out.println(resp);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-*/	}
+
+		return dialog.getStatus() == SWT.CANCEL ? CANCEL : dialog.getRequests();
+	}
 
 	public String getNome() {
 		return nome;
@@ -71,12 +89,16 @@ public class CredentialsUI {
 		return filename;
 	}
 
-	public boolean getState() {
-		return this.state;
-	}
-
 	public String getAssignment() {
 		return this.assignment;
+	}
+
+	private void saveCredentials(DialogUI dialog) {
+		this.nome = dialog.getFirstName();
+		this.sobrenome = dialog.getLastName();
+		this.filename = dialog.getFilename();
+		this.assignment = dialog.getAssignment();
+		this.assignments = dialog.getAssignments();
 	}
 
 	public String getId() {

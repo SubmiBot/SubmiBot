@@ -8,19 +8,26 @@ import org.eclipse.swt.widgets.Shell;
 
 public class TokenDialog extends InputDialog {
 
+	private int status;
+	
 	public TokenDialog(Shell parentShell, String dialogTitle, String dialogMessage, String initialValue,
 			IInputValidator validator) {
 		super(parentShell, dialogTitle, dialogMessage, initialValue, validator);
+		this.status = SWT.OPEN;
 	}
-	
+
 	@Override
 	public void create() {
 		super.create();
 	}
-	
+
 	@Override
 	protected boolean isResizable() {
 		return true;
+	}
+
+	public int getStatus() {
+		return this.status;
 	}
 	
 	public String getToken() {
@@ -29,15 +36,10 @@ public class TokenDialog extends InputDialog {
 
 	@Override
 	protected void cancelPressed() {
-		MessageBox messageBox = new MessageBox(getShell(), SWT.ICON_QUESTION | SWT.YES | SWT.NO);
-		messageBox.setMessage("Cancelar Submissão");
-		messageBox.setText("Deseja realmente cancelar a submissão?");
-
-		int response = messageBox.open();
-
-		if (response == SWT.YES)
-			System.exit(0);
+		if (Dialogs.cancelSubmission(getShell()) == SWT.YES) {
+			this.status = SWT.CANCEL;
+			super.cancelPressed();
+		}
 	}
 
-	
 }
