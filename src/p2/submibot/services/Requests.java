@@ -41,20 +41,23 @@ public class Requests {
 			response.append(inputLine);
 		}
 		in.close();
-		
+
 		Gson gson = new Gson();
 		@SuppressWarnings("unchecked")
-		List<Assignment> assigs = (ArrayList<Assignment>) gson.fromJson(response.toString(), new TypeToken<ArrayList<Assignment>>(){}.getType());
+		List<Assignment> assigs = (ArrayList<Assignment>) gson.fromJson(response.toString(),
+				new TypeToken<ArrayList<Assignment>>() {
+				}.getType());
 
 		return assigs;
 	}
-	
+
 	private String postFile(String assignment) throws IOException {
-		URL urlObj = new URL("https://canvas.instructure.com/api/v1/courses/" + this.course + "/assignments/" + assignment +"/submissions/self/files");
+		URL urlObj = new URL("https://canvas.instructure.com/api/v1/courses/" + this.course + "/assignments/"
+				+ assignment + "/submissions/self/files");
 		HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
 		con.setRequestMethod("POST");
 		con.setRequestProperty("Authorization", this.token);
-		
+
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
 		StringBuffer response = new StringBuffer();
@@ -63,36 +66,52 @@ public class Requests {
 			response.append(inputLine);
 		}
 		in.close();
-		
+
 		return response.toString();
 	}
-	
+
 	public String submitAssignment(String assignment, String filename) throws IOException {
 		Gson gson = new Gson();
 
 		String r = this.postFile(assignment);
-		FileUploadPermission re = (FileUploadPermission) gson.fromJson(r, new TypeToken<FileUploadPermission>(){}.getType());		
+		FileUploadPermission re = (FileUploadPermission) gson.fromJson(r, new TypeToken<FileUploadPermission>() {
+		}.getType());
 
 		MultipartUtility mu = new MultipartUtility(re.toString(), "UTF-8");
 		mu.addFilePart("", new File(filename));
 		List<String> res = mu.finish();
-		Response resp = (Response) gson.fromJson(res.get(0), new TypeToken<Response>(){}.getType());
-		
+		Response resp = (Response) gson.fromJson(res.get(0), new TypeToken<Response>() {
+		}.getType());
+
 		String respo = this.submit(assignment, resp.toString());
-		Submission response = (Submission) gson.fromJson(respo, new TypeToken<Submission>(){}.getType());
+		Submission response = (Submission) gson.fromJson(respo, new TypeToken<Submission>() {
+		}.getType());
 		return response.toString();
 	}
 
 	private String submit(String assignment, String id) throws IOException {
-		URL urlObj = new URL("https://canvas.instructure.com/api/v1/courses/" + this.course + "/assignments/" + assignment + "/submissions");
+		URL urlObj = new URL("https://canvas.instructure.com/api/v1/courses/" + this.course + "/assignments/"
+				+ assignment + "/submissions");
 		HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
 		con.setDoOutput(true);
 		con.setRequestMethod("POST");
 		con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 		con.setRequestProperty("Authorization", this.token);
-		con.getOutputStream().write(("submission%5Bsubmission_type%5D=online_upload&submission%5Bfile_ids%5D%5B%5D=" + id).getBytes());
+		con.getOutputStream().write(
+				("submission%5Bsubmission_type%5D=online_upload&submission%5Bfile_ids%5D%5B%5D=" + id).getBytes());
+		return readResponse(con);
+	}
 
-		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	/*
+	 * public static void main(String[] args) throws Exception { Requests req = new
+	 * Requests(
+	 * "7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ",
+	 * "1374512"); String resp = req.submitAssignment("9537389",
+	 * "/home/hericlesegs/Firefox_wallpaper.png"); System.out.println(resp); }
+	 */
+
+	private String readResponse(HttpURLConnection connection) throws IOException {
+		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		String inputLine;
 		StringBuffer response = new StringBuffer();
 
@@ -100,13 +119,21 @@ public class Requests {
 			response.append(inputLine);
 		}
 		in.close();
-		
+
 		return response.toString();
 	}
 
-	public static void main(String[] args) throws Exception {
-		Requests req = new Requests("7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ", "1374512");
-		String resp = req.submitAssignment("9537389", "/home/hericlesegs/Firefox_wallpaper.png");
-		System.out.println(resp);
+	public boolean isValid() {
+		try {
+			URL urlObj = new URL("https://canvas.instructure.com/api/v1/users/self");
+			HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
+			connection.setRequestProperty("Authorization", this.token);
+			
+			readResponse(connection);
+
+		} catch (IOException ioe) {
+			return false;
+		}
+		return true;
 	}
 }

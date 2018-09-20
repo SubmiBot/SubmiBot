@@ -35,10 +35,10 @@ public class DialogUI extends TitleAreaDialog {
 	private List<Assignment> assignments;
 
 	private Requests request;
-	
+
 	private int status;
 
-	public DialogUI(Shell parentShell, String token) {
+	public DialogUI(Shell parentShell, String token) throws IOException {
 		super(parentShell);
 		this.token = token;
 		this.status = SWT.OPEN;
@@ -225,8 +225,12 @@ public class DialogUI extends TitleAreaDialog {
 
 		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^A-Za-z_]", "");
 	}
-	
+
 	public int getStatus() {
 		return this.status;
+	}
+
+	public boolean validRequest() {
+		return request.isValid();
 	}
 }
