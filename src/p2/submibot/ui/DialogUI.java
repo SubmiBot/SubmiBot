@@ -18,7 +18,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
@@ -223,7 +222,7 @@ public class DialogUI extends TitleAreaDialog {
 		String filename = (this.firstName.toUpperCase() + " " + this.lastName.toUpperCase() + " " + this.assignment)
 				.trim().replaceAll(" ", "_");
 
-		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^A-Za-z_]", "");
+		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^A-Za-z0-9]", ""	);
 	}
 
 	public int getStatus() {

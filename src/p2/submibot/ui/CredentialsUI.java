@@ -60,7 +60,7 @@ public class CredentialsUI {
 		}
 
 		switch (dialog.open()) {
-
+		
 		case Window.OK:
 			saveCredentials(dialog);
 			Persistence.writeUserInfo(nome + " " + sobrenome, token);
@@ -104,10 +104,11 @@ public class CredentialsUI {
 		for (Assignment a : assignments)
 			if (a != null) {
 				if (a.getName().equals(this.assignment)) {
-					System.out.println(a.getId());
 					return a.getId();
 				}
 			}
-		return null;
+		Dialogs.invalidAssignment(activeShell);
+		throw new IllegalArgumentException("Assignment Invalido");
+
 	}
 }

@@ -1,7 +1,8 @@
 package p2.submibot.handlers;
 
+import java.awt.Desktop;
 import java.io.IOException;
-import java.util.List;
+import java.net.URI;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -14,9 +15,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import p2.submibot.resources.Assignment;
 import p2.submibot.services.Requests;
 import p2.submibot.ui.CredentialsUI;
+import p2.submibot.ui.Dialogs;
 import p2.submibot.util.Zip;
 
 public class SubmitProject extends AbstractHandler {
@@ -52,11 +53,15 @@ public class SubmitProject extends AbstractHandler {
 							}
 
 							try {
-								System.out.println(req.submitAssignment(handler.getId(),
+								String URL = (req.submitAssignment(handler.getId(),
 										new ProjectLocation().execute(event) + System.getProperty("file.separator")
 												+ handler.getFilename() + ".zip"));
+								Dialogs.success(window.getShell(), URL);
+								if (Desktop.isDesktopSupported()) {
+								    Desktop.getDesktop().browse(new URI(URL));
+								}
 							} catch (Exception e) {
-								e.printStackTrace();
+								e.printStackTrace();	
 							}
 
 						}

@@ -124,6 +124,7 @@ public class Requests {
 	}
 
 	public boolean isValid() {
+		
 		try {
 			URL urlObj = new URL("https://canvas.instructure.com/api/v1/users/self");
 			HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
@@ -134,6 +135,7 @@ public class Requests {
 		} catch (IOException ioe) {
 			return false;
 		}
+		
 		return true;
 	}
 }

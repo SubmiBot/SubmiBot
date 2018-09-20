@@ -23,4 +23,12 @@ public class Dialogs {
 		MessageDialog.openError(parent, "Erro - Submibot", "Token Inválido");
 
 	}
+	
+	public static void success(Shell parent, String URL) {
+		MessageDialog.openInformation(parent, "Submissão Efetuada com Sucesso - Submibot", URL);
+	}
+	
+	public static void invalidAssignment(Shell parent) {
+		MessageDialog.openError(parent, "Erro - Submibot", "Selecione Uma tarefa válida");
+	}
 }
