@@ -41,7 +41,7 @@ public class DialogUI extends TitleAreaDialog {
 		super(parentShell);
 		this.token = token;
 		this.status = SWT.OPEN;
-		this.request = new Requests(token, "1374512"/* "1388632" */);
+		this.request = new Requests(token, /*"1374512"*/"1388632");
 	}
 
 	@Override

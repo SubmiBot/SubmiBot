@@ -1,8 +1,6 @@
 package p2.submibot.handlers;
 
-import java.awt.Desktop;
 import java.io.IOException;
-import java.net.URI;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -53,20 +51,21 @@ public class SubmitProject extends AbstractHandler {
 							}
 
 							try {
-								String URL = (req.submitAssignment(handler.getId(),
-										new ProjectLocation().execute(event) + System.getProperty("file.separator")
-												+ handler.getFilename() + ".zip"));
+								String URL = (req.submitAssignment(handler.getId(), new ProjectLocation().execute(event)
+										+ System.getProperty("file.separator") + handler.getFilename() + ".zip"));
 								Dialogs.success(window.getShell(), URL);
-								if (Desktop.isDesktopSupported()) {
-								    Desktop.getDesktop().browse(new URI(URL));
-								}
+								/*
+								 * if (Desktop.isDesktopSupported()) { Desktop.getDesktop().browse(new
+								 * URI(URL)); }
+								 */
 							} catch (Exception e) {
-								e.printStackTrace();	
+								e.printStackTrace();
 							}
 
 						}
 					} catch (Exception e) {
-						MessageDialog.openInformation(window.getShell(), "Submibot", "Não foi possível efetuar a submissão");
+						MessageDialog.openInformation(window.getShell(), "Submibot",
+								"Não foi possível efetuar a submissão");
 					}
 
 				} else {
