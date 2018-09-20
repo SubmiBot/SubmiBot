@@ -41,7 +41,7 @@ public class DialogUI extends TitleAreaDialog {
 		super(parentShell);
 		this.token = token;
 		this.status = SWT.OPEN;
-		this.request = new Requests(token, /*"1374512"*/"1388632");
+		this.request = new Requests(token, /*"1374512"*/ "1388632" /* p2-plugin-test/LP2-2018.2*/);
 	}
 
 	@Override
@@ -202,7 +202,7 @@ public class DialogUI extends TitleAreaDialog {
 		return lastName;
 	}
 
-	public String getMatr() {
+	public String getMatr() { 
 		return matr;
 	}
 
@@ -219,10 +219,10 @@ public class DialogUI extends TitleAreaDialog {
 	}
 
 	public String getFilename() {
-		String filename = (this.firstName.toUpperCase() + " " + this.lastName.toUpperCase() + " " + this.assignment)
+		String filename = (this.firstName + " " + this.lastName + " " + this.assignment)
 				.trim().replaceAll(" ", "_");
 
-		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^A-Za-z0-9]", ""	);
+		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^A-Za-z_0-9]", ""	).toUpperCase();
 	}
 
 	public int getStatus() {

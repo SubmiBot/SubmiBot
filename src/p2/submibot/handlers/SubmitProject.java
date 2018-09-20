@@ -47,7 +47,7 @@ public class SubmitProject extends AbstractHandler {
 							} catch (IOException e) {
 								MessageDialog.openInformation(window.getShell(), "Erro",
 										"Não foi possível criar o zip do projeto");
-								e.printStackTrace();
+								throw new IOException();
 							}
 
 							try {
@@ -67,9 +67,8 @@ public class SubmitProject extends AbstractHandler {
 						MessageDialog.openInformation(window.getShell(), "Submibot",
 								"Não foi possível efetuar a submissão");
 					}
-
 				} else {
-					MessageDialog.openInformation(window.getShell(), "Submibot", "Clique sobre um projeto");
+						MessageDialog.openInformation(window.getShell(), "Submibot", "Clique sobre um projeto");
 				}
 			}
 		}

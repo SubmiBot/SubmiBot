@@ -47,9 +47,8 @@
       <menuContribution
             locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
             <menu label="SubmiBot">
-                <command commandId="p2.submibot.commands.showProjectLocation"/>
-                <command commandId="p2.submibot.commands.ProjectZip"/>
 				<command commandId="p2.submibot.commands.SubmitProject"/>
+                <command commandId="p2.submibot.commands.showProjectLocation"/>
 				<command commandId="p2.submibot.commands.ClearCache"/>
             </menu>
       </menuContribution>
