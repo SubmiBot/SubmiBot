@@ -19,7 +19,7 @@ public class CredentialsUI {
 
 	private UserInfo uInfo;
 	private Shell activeShell;
-	private String nome, sobrenome, senha, filename, assignment, token;
+	private String nome, sobrenome, filename, assignment, token;
 	private List<Assignment> assignments;
 
 	public CredentialsUI(Shell shell) throws ClassNotFoundException, IOException {
@@ -42,7 +42,7 @@ public class CredentialsUI {
 
 			if (tokenDialog.getStatus() == SWT.CANCEL)
 				return CANCEL;
-			
+
 		} else {
 			this.token = uInfo.getToken();
 		}
@@ -51,16 +51,19 @@ public class CredentialsUI {
 			Dialogs.invalidToken(activeShell);
 			throw new IllegalArgumentException("Token Invalido");
 		}
-		
+
 		DialogUI dialog = new DialogUI(this.activeShell, token);
+
+		if (!dialog.validRequest()) {
+			Dialogs.invalidToken(activeShell);
+			throw new IllegalArgumentException("Token Invalido");
+		}
+
 		switch (dialog.open()) {
-
+		
 		case Window.OK:
-
-			if (dialog.open() == Window.OK) {
-				saveCredentials(dialog);
-				Persistence.writeUserInfo(nome + " " + sobrenome, token);
-			}
+			saveCredentials(dialog);
+			Persistence.writeUserInfo(nome + " " + sobrenome, token);
 			break;
 		default:
 			dialog.cancelPressed();
@@ -79,10 +82,6 @@ public class CredentialsUI {
 
 	public String getSobrenome() {
 		return sobrenome;
-	}
-
-	public String getSenha() {
-		return senha;
 	}
 
 	public String getFilename() {
@@ -105,10 +104,11 @@ public class CredentialsUI {
 		for (Assignment a : assignments)
 			if (a != null) {
 				if (a.getName().equals(this.assignment)) {
-					System.out.println(a.getId());
 					return a.getId();
 				}
 			}
-		return null;
+		Dialogs.invalidAssignment(activeShell);
+		throw new IllegalArgumentException("Assignment Invalido");
+
 	}
 }

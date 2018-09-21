@@ -14,6 +14,10 @@
       		name="Submeter Projeto"
       		id="p2.submibot.commands.SubmitProject">
       </command>
+      <command
+      		name="Limpar Cache"
+      		id="p2.submibot.commands.ClearCache">
+      </command>
    </extension>
 
 
@@ -31,6 +35,10 @@
       		class="p2.submibot.handlers.SubmitProject"
       		commandId="p2.submibot.commands.SubmitProject">
       </handler>
+      <handler
+      		class="p2.submibot.handlers.ClearCache"
+      		commandId="p2.submibot.commands.ClearCache">
+      </handler>
    </extension>
 
 
@@ -39,9 +47,9 @@
       <menuContribution
             locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
             <menu label="SubmiBot">
-                <command commandId="p2.submibot.commands.showProjectLocation"/>
-                <command commandId="p2.submibot.commands.ProjectZip"/>
 				<command commandId="p2.submibot.commands.SubmitProject"/>
+                <command commandId="p2.submibot.commands.showProjectLocation"/>
+				<command commandId="p2.submibot.commands.ClearCache"/>
             </menu>
       </menuContribution>
    </extension>

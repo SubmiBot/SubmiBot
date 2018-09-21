@@ -18,7 +18,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
@@ -35,14 +34,14 @@ public class DialogUI extends TitleAreaDialog {
 	private List<Assignment> assignments;
 
 	private Requests request;
-	
+
 	private int status;
 
-	public DialogUI(Shell parentShell, String token) {
+	public DialogUI(Shell parentShell, String token) throws IOException {
 		super(parentShell);
 		this.token = token;
 		this.status = SWT.OPEN;
-		this.request = new Requests(token, "1374512"/* "1388632" */);
+		this.request = new Requests(token, /*"1374512"*/ "1388632" /* p2-plugin-test/LP2-2018.2*/);
 	}
 
 	@Override
@@ -203,7 +202,7 @@ public class DialogUI extends TitleAreaDialog {
 		return lastName;
 	}
 
-	public String getMatr() {
+	public String getMatr() { 
 		return matr;
 	}
 
@@ -220,13 +219,17 @@ public class DialogUI extends TitleAreaDialog {
 	}
 
 	public String getFilename() {
-		String filename = (this.firstName.toUpperCase() + " " + this.lastName.toUpperCase() + " " + this.assignment)
+		String filename = (this.firstName + " " + this.lastName + " " + this.assignment)
 				.trim().replaceAll(" ", "_");
 
-		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^A-Za-z_]", "");
+		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^A-Za-z_0-9]", ""	).toUpperCase();
 	}
-	
+
 	public int getStatus() {
 		return this.status;
+	}
+
+	public boolean validRequest() {
+		return request.isValid();
 	}
 }
