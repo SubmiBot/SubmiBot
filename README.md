@@ -6,20 +6,19 @@ A ferramenta funciona no Eclipse e torna fácil **localizar**, **zipar** e **sub
 
 O Plugin foi desenvolvido através do programa de monitoria para a as atividades da disciplina "Laboratório de Programação II" do curso de Ciência da Computação na Universidade Federal de Campina Grande.
 
-### Comandos
-O SubmiBot possui comandos simples para a realização de sua submissão, que são:
+## Documentação
+Documentação disponível em https://submibot.firebase.com
 
-- **Submeter Projeto**
+## Comandos
 
-> Coleta as informações de sessão do usuário a partir de um token gerado pelo Canvas e solicita as informações do usuário para realizar a submissão. Em seguida, compacta o projeto em formato zip e realiza a submissão para uma atividade selecionada.
+- **Submeter Projeto**:
+Coleta as informações de sessão do usuário a partir de um token gerado pelo Canvas e solicita as informações do usuário para realizar a submissão. Em seguida, compacta o projeto em formato zip e realiza a submissão para uma atividade selecionada.
 
-- **Localização do Projeto**
+- **Localização do Projeto**:
+Informa ao usuário o path onde o projeto selecionado se encontra.
 
-> Informa ao usuário o path onde o projeto selecionado se encontra.
+- **Limpar Cache**:
+O SubmiBot armazena informações básicas do usuário para as próximas submissões. Este comando limpa os arquivos em cache que contém estas informações.
 
-- **Limpar Cache**
-
-> O SubmiBot armazena informações básicas do usuário para as próximas submissões. Este comando limpa os arquivos em cache que contém estas informações.
-
-Ciência da Computação - UFCG  
-Copyright (c) 2018 Héricles Emanuel, Gabriel Fernandes
+## License
+[MIT](https://github.com/hericlesme/SubmiBot/blob/master/LICENSE)
