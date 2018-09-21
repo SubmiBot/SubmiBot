@@ -7,7 +7,7 @@ A ferramenta funciona no Eclipse e torna fácil **localizar**, **zipar** e **sub
 O Plugin foi desenvolvido através do programa de monitoria para a as atividades da disciplina "Laboratório de Programação II" do curso de Ciência da Computação na Universidade Federal de Campina Grande.
 
 ## Documentação
-Documentação disponível em https://submibot.firebase.com
+Documentação disponível em https://submibot.firebaseapp.com
 
 ## Comandos
 
