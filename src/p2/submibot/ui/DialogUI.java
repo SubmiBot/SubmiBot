@@ -27,9 +27,9 @@ import p2.submibot.services.Requests;
 
 public class DialogUI extends TitleAreaDialog {
 
-	private Text firstNameText, lastNameText, matrText;
+	private Text firstNameText, lastNameText;
 
-	private String firstName, lastName, matr, token, assignment;
+	private String firstName, lastName, token, assignment;
 
 	private List<Assignment> assignments;
 
@@ -67,7 +67,6 @@ public class DialogUI extends TitleAreaDialog {
 
 		createFirstName(container);
 		createLastName(container);
-		createMatr(container);
 		createCombo(container);
 
 		return area;
@@ -106,18 +105,6 @@ public class DialogUI extends TitleAreaDialog {
 
 		lastNameText = new Text(container, SWT.BORDER);
 		lastNameText.setLayoutData(lastNameData);
-	}
-
-	private void createMatr(Composite container) {
-		Label matrLabel = new Label(container, SWT.NONE);
-		matrLabel.setText("Matrícula");
-
-		GridData matrData = new GridData();
-		matrData.grabExcessHorizontalSpace = true;
-		matrData.horizontalAlignment = GridData.FILL;
-
-		matrText = new Text(container, SWT.BORDER);
-		matrText.setLayoutData(matrData);
 	}
 
 	private void createCombo(Composite container) {
@@ -172,8 +159,6 @@ public class DialogUI extends TitleAreaDialog {
 				e.printStackTrace();
 			}
 		}
-
-		this.matr = catchText(matrText);
 	}
 
 	private String catchText(Text text) {
@@ -200,10 +185,6 @@ public class DialogUI extends TitleAreaDialog {
 
 	public String getLastName() {
 		return lastName;
-	}
-
-	public String getMatr() { 
-		return matr;
 	}
 
 	public String getAssignment() {
