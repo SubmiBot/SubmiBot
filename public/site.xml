@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <description name="Submibot" url="https://submibot.firebaseapp.com">
-      Eclipse plugin for assignments submission of the discipline Programming Laboratory II, Computer Science - Federal University of Campina Grande. The application consists of sending eclipse projects directly to the Canvas tool.
-   </description>
-   <feature url="features/submibot_1.0.0.jar" id="submibot" version="1.0.0" os="linux,macosx,win32" nl="pt_BR"/>
-   <category-def name="Alpha" label="Submibot Alpha"/>
-</site>
