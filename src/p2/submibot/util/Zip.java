@@ -9,27 +9,27 @@ import java.util.zip.ZipOutputStream;
 
 public class Zip {
 
-	public static void zip(String sourceDirPath, String zipFilePath) throws IOException {
-	    
-		Path zipFileP = Files.createFile(Paths.get(zipFilePath));
-		
-		try (ZipOutputStream zipOutputStrem = new ZipOutputStream(Files.newOutputStream(zipFileP))) {
-		    Path sourceDirP = Paths.get(sourceDirPath);
-		    Files.walk(sourceDirP)
-		    .filter(path -> !Files.isDirectory(path))
-		    .forEach(path -> {
-		    	if (!path.toString().equals(zipFilePath)) {
-			    	ZipEntry zipEntry = new ZipEntry(sourceDirP.relativize(path).toString());
-					try {
-						zipOutputStrem.putNextEntry(zipEntry);
-						Files.copy(path, zipOutputStrem);
-						zipOutputStrem.closeEntry();
-					} catch (IOException e) {
-						System.err.println(e);
-					}	
-		    	}
-		    });
-		}
-	}	
+    public static void zip(String sourceDirPath, String zipFilePath) throws IOException {
+        if (Files.exists(Paths.get(zipFilePath)))
+            Files.delete(Paths.get(zipFilePath));
+        Path zipFileP = Files.createFile(Paths.get(zipFilePath));
 
+        try (ZipOutputStream zipOutputStrem = new ZipOutputStream(Files.newOutputStream(zipFileP))) {
+            Path sourceDirP = Paths.get(sourceDirPath);
+            Files.walk(sourceDirP)
+            .filter(path -> !Files.isDirectory(path))
+            .forEach(path -> {
+                if (!path.toString().equals(zipFilePath)) {
+                    ZipEntry zipEntry = new ZipEntry(sourceDirP.relativize(path).toString());
+                    try {
+                        zipOutputStrem.putNextEntry(zipEntry);
+                        Files.copy(path, zipOutputStrem);
+                        zipOutputStrem.closeEntry();
+                    } catch (IOException e) {
+                        System.err.println(e);
+                    }
+                }
+            });
+        }
+    }
 }
