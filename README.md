@@ -21,4 +21,4 @@ Informa ao usuário o path onde o projeto selecionado se encontra.
 O SubmiBot armazena informações básicas do usuário para as próximas submissões. Este comando limpa os arquivos em cache que contém estas informações.
 
 ## License
-[MIT](https://github.com/hericlesme/SubmiBot/blob/master/LICENSE)
+[MIT](https://github.com/SubmiBot/SubmiBot/blob/master/LICENSE)
