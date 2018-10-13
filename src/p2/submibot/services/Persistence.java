@@ -34,16 +34,9 @@ public class Persistence {
 		return file.exists() ? readFile(file) : null;
 	}
 
-	public static void writeUserInfo(String name, String token) throws IOException {
+	public static void writeUserInfo(String name, String surname, String token) throws IOException {
 		File file = new File(PATH + ".submibot");
-		writeFile(file, new UserInfo(name, token));
-	}
-
-	public static void main(String[] args) throws IOException, ClassNotFoundException {
-//		writeUserInfo("Hericles Emmanuel", "7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ");
-		UserInfo ui = readUserInfo();
-		System.out.println(ui.getName());
-		System.out.println(ui.getToken());
+		writeFile(file, new UserInfo(name, surname, token));
 	}
 }
 
