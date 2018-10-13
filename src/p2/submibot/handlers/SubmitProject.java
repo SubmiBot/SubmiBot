@@ -42,8 +42,6 @@ public class SubmitProject extends AbstractHandler {
 								IPath path = project.getLocation();
 								Zip.zip(path.toOSString(),
 										path.toOSString() + IPath.SEPARATOR + handler.getFilename() + ".zip");
-								MessageDialog.openInformation(window.getShell(), "Zip criado com sucesso",
-										"Zip do projeto em " + path.toOSString());
 							} catch (IOException e) {
 								MessageDialog.openInformation(window.getShell(), "Erro",
 										"Não foi possível criar o zip do projeto");
@@ -51,8 +49,9 @@ public class SubmitProject extends AbstractHandler {
 							}
 
 							try {
-								String URL = (req.submitAssignment(handler.getId(), new ProjectLocation().execute(event)
-										+ System.getProperty("file.separator") + handler.getFilename() + ".zip"));
+								IPath path = project.getLocation();
+								String URL = req.submitAssignment(handler.getId(),
+										path.toOSString() + IPath.SEPARATOR + handler.getFilename() + ".zip");
 								Dialogs.success(window.getShell(), URL);
 								/*
 								 * if (Desktop.isDesktopSupported()) { Desktop.getDesktop().browse(new
