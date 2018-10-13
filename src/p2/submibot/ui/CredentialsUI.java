@@ -63,7 +63,7 @@ public class CredentialsUI {
 		
 		case Window.OK:
 			saveCredentials(dialog);
-			Persistence.writeUserInfo(nome + " " + sobrenome, token);
+			Persistence.writeUserInfo(nome, sobrenome, token);
 			break;
 		default:
 			dialog.cancelPressed();

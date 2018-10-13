@@ -6,18 +6,25 @@ public class UserInfo implements Serializable {
 
 	private String name;
 	
+	private String surname;
+	
 	private String token;
 	
 	private static final long serialVersionUID = 1L;
 
-	public UserInfo(String name, String token) {
+	public UserInfo(String name, String surname, String token) {
 		this.name = name;
+		this.surname = surname;
 		this.token = token;
 	}
 
 	public String getName() {
 		return this.name;
-	}	
+	}
+	
+	public String getSurname() {
+		return this.surname;
+	}
 
 	public String getToken() {
 		return token;
@@ -25,6 +32,6 @@ public class UserInfo implements Serializable {
 
 	@Override
 	public String toString() {
-		return this.name + " - " + this.token;
+		return this.name + " - " + this.surname;
 	}
 }
