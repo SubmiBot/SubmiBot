@@ -18,14 +18,16 @@ public class Zip {
 		    Files.walk(sourceDirP)
 		    .filter(path -> !Files.isDirectory(path))
 		    .forEach(path -> {
-		    	ZipEntry zipEntry = new ZipEntry(sourceDirP.relativize(path).toString());
-				try {
-					zipOutputStrem.putNextEntry(zipEntry);
-					Files.copy(path, zipOutputStrem);
-					zipOutputStrem.closeEntry();
-				} catch (IOException e) {
-					System.err.println(e);
-				}
+		    	if (!path.toString().equals(zipFilePath)) {
+			    	ZipEntry zipEntry = new ZipEntry(sourceDirP.relativize(path).toString());
+					try {
+						zipOutputStrem.putNextEntry(zipEntry);
+						Files.copy(path, zipOutputStrem);
+						zipOutputStrem.closeEntry();
+					} catch (IOException e) {
+						System.err.println(e);
+					}	
+		    	}
 		    });
 		}
 	}	
