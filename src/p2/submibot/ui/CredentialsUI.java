@@ -52,7 +52,7 @@ public class CredentialsUI {
 			throw new IllegalArgumentException("Token Invalido");
 		}
 
-		DialogUI dialog = new DialogUI(this.activeShell, token);
+		MainDialog dialog = new MainDialog(this.activeShell, token);
 
 		if (!dialog.validRequest()) {
 			Dialogs.invalidToken(activeShell);
@@ -92,7 +92,7 @@ public class CredentialsUI {
 		return this.assignment;
 	}
 
-	private void saveCredentials(DialogUI dialog) {
+	private void saveCredentials(MainDialog dialog) {
 		this.nome = dialog.getFirstName();
 		this.sobrenome = dialog.getLastName();
 		this.filename = dialog.getFilename();
