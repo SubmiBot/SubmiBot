@@ -25,7 +25,7 @@ import p2.submibot.resources.Assignment;
 import p2.submibot.services.Persistence;
 import p2.submibot.services.Requests;
 
-public class DialogUI extends TitleAreaDialog {
+public class MainDialog extends TitleAreaDialog {
 
 	private Text firstNameText, lastNameText;
 
@@ -37,7 +37,7 @@ public class DialogUI extends TitleAreaDialog {
 
 	private int status;
 
-	public DialogUI(Shell parentShell, String token) throws IOException {
+	public MainDialog(Shell parentShell, String token) throws IOException {
 		super(parentShell);
 		this.token = token;
 		this.status = SWT.OPEN;
@@ -112,11 +112,14 @@ public class DialogUI extends TitleAreaDialog {
 		try {
 			String names = "";
 			this.assignments = request.getAssignments();
-			for (Assignment a : this.assignments)
-				names += a.getName() + "/";
+			for (Assignment a : this.assignments) {
+				if(a.isAvailable())
+					names += a.getName() + "/";
+			}
+			
 			combo = names.split("/");
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		Label comboLabel = new Label(container, SWT.NONE);
