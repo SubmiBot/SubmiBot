@@ -14,7 +14,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import p2.submibot.services.Requests;
-import p2.submibot.ui.CredentialsUI;
+import p2.submibot.ui.CredentialsManager;
 import p2.submibot.ui.Dialogs;
 import p2.submibot.util.Zip;
 
@@ -34,9 +34,11 @@ public class SubmitProject extends AbstractHandler {
 				if (project != null) {
 
 					try {
-						CredentialsUI handler = new CredentialsUI(window.getShell());
+						
+						CredentialsManager handler = new CredentialsManager(window.getShell());
+						
 						Requests req = handler.execute();
-						System.out.println(req);
+						
 						if (req != null) {
 							try {
 								IPath path = project.getLocation();
@@ -53,7 +55,7 @@ public class SubmitProject extends AbstractHandler {
 								String URL = req.submitAssignment(handler.getId(),
 										path.toOSString() + IPath.SEPARATOR + handler.getFilename() + ".zip");
 								Dialogs.success(window.getShell(), URL);
-								/*
+								/**
 								 * if (Desktop.isDesktopSupported()) { Desktop.getDesktop().browse(new
 								 * URI(URL)); }
 								 */
@@ -66,6 +68,7 @@ public class SubmitProject extends AbstractHandler {
 						MessageDialog.openInformation(window.getShell(), "Submibot",
 								"Não foi possível efetuar a submissão");
 					}
+
 				} else {
 						MessageDialog.openInformation(window.getShell(), "Submibot", "Clique sobre um projeto");
 				}

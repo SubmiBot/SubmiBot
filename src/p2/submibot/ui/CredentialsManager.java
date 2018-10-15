@@ -13,7 +13,7 @@ import p2.submibot.resources.UserInfo;
 import p2.submibot.services.Persistence;
 import p2.submibot.services.Requests;
 
-public class CredentialsUI {
+public class CredentialsManager {
 
 	private final Requests CANCEL = null;
 
@@ -22,7 +22,7 @@ public class CredentialsUI {
 	private String nome, sobrenome, filename, assignment, token;
 	private List<Assignment> assignments;
 
-	public CredentialsUI(Shell shell) throws ClassNotFoundException, IOException {
+	public CredentialsManager(Shell shell) throws ClassNotFoundException, IOException {
 		this.activeShell = shell;
 		this.uInfo = Persistence.readUserInfo();
 	}
@@ -52,7 +52,13 @@ public class CredentialsUI {
 			throw new IllegalArgumentException("Token Invalido");
 		}
 
-		MainDialog dialog = new MainDialog(this.activeShell, token);
+		MainDialog dialog;
+		
+		if(uInfo == null)	
+			dialog = new MainDialog(this.activeShell, token);	
+		else 
+			dialog = new MainDialog(this.activeShell, token, uInfo);
+		
 
 		if (!dialog.validRequest()) {
 			Dialogs.invalidToken(activeShell);

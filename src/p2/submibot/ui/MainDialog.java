@@ -22,12 +22,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import p2.submibot.resources.Assignment;
+import p2.submibot.resources.UserInfo;
 import p2.submibot.services.Persistence;
 import p2.submibot.services.Requests;
 
 public class MainDialog extends TitleAreaDialog {
 
-	private Text firstNameText, lastNameText;
+	private Text firstNameText, lastNameText, currentUserText;
 
 	private String firstName, lastName, token, assignment;
 
@@ -41,7 +42,13 @@ public class MainDialog extends TitleAreaDialog {
 		super(parentShell);
 		this.token = token;
 		this.status = SWT.OPEN;
-		this.request = new Requests(token, /*"1374512"*/ "1388632" /* p2-plugin-test/LP2-2018.2*/);
+		this.request = new Requests(token, /* "1374512" */ "1388632" /* p2-plugin-test/LP2-2018.2 */);
+	}
+
+	public MainDialog(Shell parentShell, String token, UserInfo uInfo) throws IOException {
+		this(parentShell, uInfo.getToken());
+		this.firstName = uInfo.getName();
+		this.lastName = uInfo.getSurname();
 	}
 
 	@Override
@@ -65,8 +72,15 @@ public class MainDialog extends TitleAreaDialog {
 
 		container.setLayout(layout);
 
-		createFirstName(container);
-		createLastName(container);
+		if (this.lastName == null || this.firstName == null) {
+			createFirstName(container);
+			createLastName(container);
+		} else {
+			createSubmitingAs(container, this.firstName + " " + this.lastName);
+		}
+
+		System.out.println(this.firstName + " " + this.lastName);
+
 		createCombo(container);
 
 		return area;
@@ -107,16 +121,37 @@ public class MainDialog extends TitleAreaDialog {
 		lastNameText.setLayoutData(lastNameData);
 	}
 
+	private void createSubmitingAs(Composite container, String user) {
+			Label currentUser = new Label(container, SWT.NONE);
+			currentUser.setText("Submetendo como:");
+
+			GridData currentUserData = new GridData();
+			currentUserData.grabExcessHorizontalSpace = true;
+			currentUserData.horizontalAlignment = GridData.FILL;
+
+			currentUserText = new Text(container, SWT.NONE | SWT.READ_ONLY);
+			currentUserText.setLayoutData(currentUserData);
+			currentUserText.setText(user);
+		
+//		GridData currentUserGrid = new GridData();
+//		currentUserGrid.grabExcessHorizontalSpace = true;
+//		currentUserGrid.horizontalAlignment = GridData.FILL;
+//
+//		currentUserText = new Text(container, SWT.None);
+//		currentUserText.setLayoutData(currentUserGrid);
+//		currentUserText.setText("Submetendo como: " + user);
+	}
+
 	private void createCombo(Composite container) {
 		String[] combo = new String[0];
 		try {
 			String names = "";
 			this.assignments = request.getAssignments();
 			for (Assignment a : this.assignments) {
-				if(a.isAvailable())
+				if (a.isAvailable())
 					names += a.getName() + "/";
 			}
-			
+
 			combo = names.split("/");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -203,10 +238,9 @@ public class MainDialog extends TitleAreaDialog {
 	}
 
 	public String getFilename() {
-		String filename = (this.firstName + " " + this.lastName + " " + this.assignment)
-				.trim().replaceAll(" ", "_");
+		String filename = (this.firstName + " " + this.lastName + " " + this.assignment).trim().replaceAll(" ", "_");
 
-		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^A-Za-z_0-9]", ""	).toUpperCase();
+		return Normalizer.normalize(filename, Normalizer.Form.NFD).replaceAll("[^A-Za-z_0-9]", "").toUpperCase();
 	}
 
 	public int getStatus() {
