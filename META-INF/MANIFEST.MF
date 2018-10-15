@@ -9,3 +9,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
  com.google.gson;bundle-version="2.8.2"
+Export-Package: p2.submibot.handlers,
+ p2.submibot.resources,
+ p2.submibot.services,
+ p2.submibot.ui,
+ p2.submibot.util
