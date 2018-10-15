@@ -1,0 +1,714 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2018-09-01T18:24:22.003Z",
+	"__export_source": "insomnia.desktop.app:v6.0.2",
+	"resources": [
+		{
+			"_id": "wrk_5b3b522f8fa741cd93f81692f35c641a",
+			"created": 1535812113196,
+			"description": "",
+			"modified": 1535812113196,
+			"name": "Submibot LP2",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_287f81f7b0fd4faaa51439973325f140",
+			"color": null,
+			"created": 1535812113226,
+			"data": {},
+			"isPrivate": false,
+			"metaSortKey": 1535812113226,
+			"modified": 1535812113226,
+			"name": "New Environment",
+			"parentId": "wrk_5b3b522f8fa741cd93f81692f35c641a",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_0cdbb33237f640c5a623bd0a391ae653",
+			"cookies": [
+				{
+					"creation": "2018-09-01T14:29:13.797Z",
+					"domain": "canvas.instructure.com",
+					"hostOnly": true,
+					"id": "9664056098592255",
+					"key": "_csrf_token",
+					"lastAccessed": "2018-09-01T18:22:58.110Z",
+					"path": "/",
+					"secure": true,
+					"value": "AKWmhuPzC1hZrJcQWXqSHrxSX4qUMVOS08Tbj9oEWV5p3MnSjpc4bwvK5VMXP9p93TUQ2u1dFPa2nLbj8TVrJg%3D%3D"
+				},
+				{
+					"creation": "2018-09-01T14:30:22.067Z",
+					"domain": "canvas.instructure.com",
+					"hostOnly": true,
+					"id": "6150465786995485",
+					"key": "log_session_id",
+					"lastAccessed": "2018-09-01T14:30:22.067Z",
+					"path": "/",
+					"value": "ec121723814e94b1db1e81d57434ce6f"
+				},
+				{
+					"creation": "2018-09-01T14:30:22.067Z",
+					"domain": "canvas.instructure.com",
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "04108126167160453",
+					"key": "canvas_session",
+					"lastAccessed": "2018-09-01T18:22:58.110Z",
+					"path": "/",
+					"secure": true,
+					"value": "nux26ZXHmMSczWJ_4Vx9yQ.5VRlG4NwGWjesDPBxQKbjscnGHGgs1GUjwPHzFs22k3bqhx8JimlmZJSi0877cLW8Gr7vNPoT1hxLjevza9y8b9NDq26GD5KesjTqH4ZRlFDFqswbyFGVpRxxF_bRxQt.DgADtDV-vK6SUVYz1f_j21JARAU.W4rZAQ"
+				}
+			],
+			"created": 1535812113230,
+			"modified": 1535826178111,
+			"name": "Default Jar",
+			"parentId": "wrk_5b3b522f8fa741cd93f81692f35c641a",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_cfebb8458ef04b63819ea18b88116737",
+			"created": 1535824110719,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1535824110720,
+			"modified": 1535824110719,
+			"name": "Submit File in Course",
+			"parentId": "wrk_5b3b522f8fa741cd93f81692f35c641a",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_262bfc6f299a429dabde0935c4460e37",
+			"created": 1535824172121,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1535824172121,
+			"modified": 1535824172121,
+			"name": "Get Infos",
+			"parentId": "wrk_5b3b522f8fa741cd93f81692f35c641a",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_018699bb76fc48a097dd948dab991981",
+			"created": 1535824255165,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1535824255165,
+			"modified": 1535824255165,
+			"name": "Submit Files (User and assignment)",
+			"parentId": "wrk_5b3b522f8fa741cd93f81692f35c641a",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_5952dac78809460d9fe9679e7aa10682",
+			"created": 1535824466742,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1535824466742,
+			"modified": 1535824466742,
+			"name": "Online Submission",
+			"parentId": "wrk_5b3b522f8fa741cd93f81692f35c641a",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_e20e383573b2407a916ed7af11e35cf5",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"id": "pair_ceddda6d4f424a8aa7ac780cf72ccd72",
+						"name": "name",
+						"value": "yas.png"
+					},
+					{
+						"id": "pair_388a5ef6016d426eaa707c5291ceedce",
+						"name": "size",
+						"value": "469173"
+					},
+					{
+						"id": "pair_79b84c118279456288ecf4ecf829f8c4",
+						"name": "content_type",
+						"value": "image/png"
+					},
+					{
+						"id": "pair_a4419b0293a6489ba5b532d0035e9428",
+						"name": "parent_folder_path",
+						"value": "/"
+					}
+				]
+			},
+			"created": 1535823899245,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_748a755c3185412e9dd3d5698cd0980c",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				},
+				{
+					"id": "pair_8f444e4a0eb04bfeab5a4c86152d8539",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535824091808.75,
+			"method": "POST",
+			"modified": 1535825703475,
+			"name": "Submit File in Course",
+			"parameters": [],
+			"parentId": "fld_cfebb8458ef04b63819ea18b88116737",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://canvas.instructure.com/api/v1/courses/1374512/files",
+			"_type": "request"
+		},
+		{
+			"_id": "req_8b632fd3d34548bda6bec514dacc57c6",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"id": "pair_486f2ebc26d44121a3a50b1583e69132",
+						"name": "filename",
+						"value": "yas.png"
+					},
+					{
+						"id": "pair_7bf8be2ba0e24fad813b2d0bfe3b290a",
+						"name": "content_type",
+						"value": "image/png"
+					},
+					{
+						"fileName": "/home/hericlesme/Imagens/Wallpapers/yas.png",
+						"id": "pair_d5a5030a146b4573adcfbb8686350514",
+						"name": "",
+						"type": "file",
+						"value": ""
+					}
+				]
+			},
+			"created": 1535823969573,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_8aac19de72b1447eba6d90140f397504",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				},
+				{
+					"id": "pair_03984af4ced84ea599b421eb5da5b49f",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535824091858.75,
+			"method": "POST",
+			"modified": 1535825693567,
+			"name": "Submit in Course URL",
+			"parameters": [],
+			"parentId": "fld_cfebb8458ef04b63819ea18b88116737",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://inst-fs-iad-prod.inscloudgate.net/files?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzU4MjM5MzUsInVzZXJfaWQiOiI3MDAwMDAwOTkxNjk0NyIsInJlc291cmNlIjoiL2ZpbGVzIiwiY2FwdHVyZV91cmwiOiJodHRwczovL2NhbnZhcy5pbnN0cnVjdHVyZS5jb20vYXBpL3YxL2ZpbGVzL2NhcHR1cmUiLCJjYXB0dXJlX3BhcmFtcyI6eyJjb250ZXh0X3R5cGUiOiJDb3Vyc2UiLCJjb250ZXh0X2lkIjoiNzAwMDAwMDEzNzQ1MTIiLCJ1c2VyX2lkIjoiNzAwMDAwMDk5MTY5NDciLCJmb2xkZXJfaWQiOiI3MDAwMDAxMjA1OTIzNCIsInJvb3RfYWNjb3VudF9pZCI6IjcwMDAwMDAwMDAwMDEwIiwicXVvdGFfZXhlbXB0IjpmYWxzZSwib25fZHVwbGljYXRlIjoib3ZlcndyaXRlIiwicHJvZ3Jlc3NfaWQiOm51bGwsImluY2x1ZGUiOm51bGx9LCJsZWdhY3lfYXBpX2RldmVsb3Blcl9rZXlfaWQiOiIxNzAwMDAwMDAwMDAwMTYiLCJsZWdhY3lfYXBpX3Jvb3RfYWNjb3VudF9pZCI6IjcwMDAwMDAwMDAwMDEwIiwiZXhwIjoxNTM1ODI0NTM1fQ.knlElh9cYI19AwGtLzTaBKb23xoYQF165IiMlDzvH8_0YRyFQE2rYffLBR1Zl5F8fiZOd7iYZzUPEGPWYr0pbA",
+			"_type": "request"
+		},
+		{
+			"_id": "req_9d75e24cc867464293eec4be247af7d2",
+			"authentication": {},
+			"body": {},
+			"created": 1535812122389,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_91969e0150024f5090485d1346847d5b",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535812902934,
+			"method": "GET",
+			"modified": 1535824218468,
+			"name": "User",
+			"parameters": [],
+			"parentId": "fld_262bfc6f299a429dabde0935c4460e37",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://canvas.instructure.com/api/v1/users/self",
+			"_type": "request"
+		},
+		{
+			"_id": "req_2f9ae48fd7fc47098b77f1598275f3fe",
+			"authentication": {},
+			"body": {},
+			"created": 1535812714971,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_eb202ace53744f91add6b589f0eb82ef",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535812902884,
+			"method": "GET",
+			"modified": 1535824198513,
+			"name": "Courses",
+			"parameters": [],
+			"parentId": "fld_262bfc6f299a429dabde0935c4460e37",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://canvas.instructure.com/api/v1/courses",
+			"_type": "request"
+		},
+		{
+			"_id": "req_0c6618b6b8934dc289f068cc48e81649",
+			"authentication": {},
+			"body": {},
+			"created": 1535813090697,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_495c1c0e3f96407594eca54aa8021409",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535812902834,
+			"method": "GET",
+			"modified": 1535825845130,
+			"name": "Assignments",
+			"parameters": [],
+			"parentId": "fld_262bfc6f299a429dabde0935c4460e37",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://canvas.instructure.com/api/v1/courses/1374512/assignments/",
+			"_type": "request"
+		},
+		{
+			"_id": "req_50d00d62a21c44f1890feda8b88e1784",
+			"authentication": {},
+			"body": {},
+			"created": 1535813561194,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_6c38c2fbab03423386dde22fc1368585",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535812902859,
+			"method": "GET",
+			"modified": 1535825841619,
+			"name": "Quizzes",
+			"parameters": [],
+			"parentId": "fld_262bfc6f299a429dabde0935c4460e37",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://canvas.instructure.com/api/v1/courses/1374512/quizzes",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c58ed89e3b584c96b4df93ed1964aa1a",
+			"authentication": {},
+			"body": {},
+			"created": 1535823507160,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_d69cbc9281b84cdfb106b90c912a25f9",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535812902846.5,
+			"method": "GET",
+			"modified": 1535825843817,
+			"name": "List Files",
+			"parameters": [],
+			"parentId": "fld_262bfc6f299a429dabde0935c4460e37",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://canvas.instructure.com/api/v1/courses/1374512/files",
+			"_type": "request"
+		},
+		{
+			"_id": "req_5717e2d8348146a69f5294ae733456a2",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"id": "pair_ceddda6d4f424a8aa7ac780cf72ccd72",
+						"name": "name",
+						"value": "yas.png"
+					},
+					{
+						"id": "pair_388a5ef6016d426eaa707c5291ceedce",
+						"name": "size",
+						"value": "469173"
+					},
+					{
+						"id": "pair_79b84c118279456288ecf4ecf829f8c4",
+						"name": "content_type",
+						"value": "image/png"
+					},
+					{
+						"id": "pair_a4419b0293a6489ba5b532d0035e9428",
+						"name": "parent_folder_path",
+						"value": "/"
+					}
+				]
+			},
+			"created": 1535814787551,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_748a755c3185412e9dd3d5698cd0980c",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				},
+				{
+					"id": "pair_8f444e4a0eb04bfeab5a4c86152d8539",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535819539430,
+			"method": "POST",
+			"modified": 1535824647770,
+			"name": "Submit File",
+			"parameters": [],
+			"parentId": "fld_018699bb76fc48a097dd948dab991981",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://canvas.instructure.com/api/v1/users/self/files",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7184e85f37cb42fda35e19bf379212e8",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"id": "pair_486f2ebc26d44121a3a50b1583e69132",
+						"name": "filename",
+						"value": "yas.png"
+					},
+					{
+						"id": "pair_7bf8be2ba0e24fad813b2d0bfe3b290a",
+						"name": "content_type",
+						"value": "image/png"
+					},
+					{
+						"fileName": "/home/hericlesme/Imagens/Wallpapers/yas.png",
+						"id": "pair_d5a5030a146b4573adcfbb8686350514",
+						"name": "",
+						"type": "file",
+						"value": ""
+					}
+				]
+			},
+			"created": 1535815571725,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_8aac19de72b1447eba6d90140f397504",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				},
+				{
+					"id": "pair_03984af4ced84ea599b421eb5da5b49f",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535819539442.5,
+			"method": "POST",
+			"modified": 1535824260755,
+			"name": "Submit in URL",
+			"parameters": [],
+			"parentId": "fld_018699bb76fc48a097dd948dab991981",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://inst-fs-iad-prod.inscloudgate.net/files?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzU4MTU1NDUsInVzZXJfaWQiOiI3MDAwMDAwOTkxNjk0NyIsInJlc291cmNlIjoiL2ZpbGVzIiwiY2FwdHVyZV91cmwiOiJodHRwczovL2NhbnZhcy5pbnN0cnVjdHVyZS5jb20vYXBpL3YxL2ZpbGVzL2NhcHR1cmUiLCJjYXB0dXJlX3BhcmFtcyI6eyJjb250ZXh0X3R5cGUiOiJVc2VyIiwiY29udGV4dF9pZCI6IjcwMDAwMDA5OTE2OTQ3IiwidXNlcl9pZCI6IjcwMDAwMDA5OTE2OTQ3IiwiZm9sZGVyX2lkIjoiNzAwMDAwMTAxNzQ3MjEiLCJyb290X2FjY291bnRfaWQiOiI3MDAwMDAwMDAwMDAxMCIsInF1b3RhX2V4ZW1wdCI6ZmFsc2UsIm9uX2R1cGxpY2F0ZSI6Im92ZXJ3cml0ZSIsInByb2dyZXNzX2lkIjpudWxsLCJpbmNsdWRlIjpudWxsfSwibGVnYWN5X2FwaV9kZXZlbG9wZXJfa2V5X2lkIjoiMTcwMDAwMDAwMDAwMDE2IiwibGVnYWN5X2FwaV9yb290X2FjY291bnRfaWQiOiI3MDAwMDAwMDAwMDAxMCIsImV4cCI6MTUzNTgxNjE0NX0.YSvVR9JMd5pdFAYMfEUbk0tHeqGocG0zxD-xsbEPEfZ69cgQ46_4eabzzDDH90QLzUVuowgihvsqnoNeYOOAcQ",
+			"_type": "request"
+		},
+		{
+			"_id": "req_2a9b040d390946f4a6a938cf749e6db9",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"id": "pair_ceddda6d4f424a8aa7ac780cf72ccd72",
+						"name": "name",
+						"value": "yas.png"
+					},
+					{
+						"id": "pair_388a5ef6016d426eaa707c5291ceedce",
+						"name": "size",
+						"value": "469173"
+					},
+					{
+						"id": "pair_79b84c118279456288ecf4ecf829f8c4",
+						"name": "content_type",
+						"value": "image/png"
+					},
+					{
+						"id": "pair_a4419b0293a6489ba5b532d0035e9428",
+						"name": "parent_folder_path",
+						"value": "/"
+					}
+				]
+			},
+			"created": 1535815952854,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_748a755c3185412e9dd3d5698cd0980c",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				},
+				{
+					"id": "pair_8f444e4a0eb04bfeab5a4c86152d8539",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535819539392.5,
+			"method": "POST",
+			"modified": 1535825731748,
+			"name": "Test - Upload Assignment",
+			"parameters": [],
+			"parentId": "fld_018699bb76fc48a097dd948dab991981",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://canvas.instructure.com/api/v1/courses/1374512/assignments/9002458/submissions/self/files/",
+			"_type": "request"
+		},
+		{
+			"_id": "req_555e608ac7034e4d8605ced11de2b216",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"id": "pair_486f2ebc26d44121a3a50b1583e69132",
+						"name": "filename",
+						"value": "yas.png"
+					},
+					{
+						"id": "pair_7bf8be2ba0e24fad813b2d0bfe3b290a",
+						"name": "content_type",
+						"value": "image/png"
+					},
+					{
+						"fileName": "/home/hericlesme/Imagens/Wallpapers/yas.png",
+						"id": "pair_d5a5030a146b4573adcfbb8686350514",
+						"name": "",
+						"type": "file",
+						"value": ""
+					}
+				]
+			},
+			"created": 1535817362893,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_8aac19de72b1447eba6d90140f397504",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				},
+				{
+					"id": "pair_03984af4ced84ea599b421eb5da5b49f",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535819539417.5,
+			"method": "POST",
+			"modified": 1535825733988,
+			"name": "Test - Upload in Assignment URL",
+			"parameters": [],
+			"parentId": "fld_018699bb76fc48a097dd948dab991981",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://inst-fs-iad-prod.inscloudgate.net/files?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MzU4MTczMTQsInVzZXJfaWQiOiI3MDAwMDAwOTkxNjk0NyIsInJlc291cmNlIjoiL2ZpbGVzIiwiY2FwdHVyZV91cmwiOiJodHRwczovL2NhbnZhcy5pbnN0cnVjdHVyZS5jb20vYXBpL3YxL2ZpbGVzL2NhcHR1cmUiLCJjYXB0dXJlX3BhcmFtcyI6eyJjb250ZXh0X3R5cGUiOiJVc2VyIiwiY29udGV4dF9pZCI6IjcwMDAwMDA5OTE2OTQ3IiwidXNlcl9pZCI6IjcwMDAwMDA5OTE2OTQ3IiwiZm9sZGVyX2lkIjoiNzAwMDAwMTAxNzQ3MjEiLCJyb290X2FjY291bnRfaWQiOiI3MDAwMDAwMDAwMDAxMCIsInF1b3RhX2V4ZW1wdCI6dHJ1ZSwib25fZHVwbGljYXRlIjoib3ZlcndyaXRlIiwicHJvZ3Jlc3NfaWQiOm51bGwsImluY2x1ZGUiOm51bGx9LCJsZWdhY3lfYXBpX2RldmVsb3Blcl9rZXlfaWQiOiIxNzAwMDAwMDAwMDAwMTYiLCJsZWdhY3lfYXBpX3Jvb3RfYWNjb3VudF9pZCI6IjcwMDAwMDAwMDAwMDEwIiwiZXhwIjoxNTM1ODE3OTE0fQ.Ko_8kEM8Hsj2OkcPfFS6Wu-f0h3WOSWOtqmKVvG8XVag6FF4ElwF_VsR7W4E7n-uuyDeiZWfk9Ke_Q1hvGtWOQ",
+			"_type": "request"
+		},
+		{
+			"_id": "req_6513427ba8914cf390c2d391e1e4a1e4",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"id": "pair_ceddda6d4f424a8aa7ac780cf72ccd72",
+						"name": "name",
+						"value": "yas.png"
+					},
+					{
+						"id": "pair_388a5ef6016d426eaa707c5291ceedce",
+						"name": "size",
+						"value": "469173"
+					},
+					{
+						"id": "pair_79b84c118279456288ecf4ecf829f8c4",
+						"name": "content_type",
+						"value": "image/png"
+					},
+					{
+						"id": "pair_a4419b0293a6489ba5b532d0035e9428",
+						"name": "parent_folder_path",
+						"value": "/"
+					}
+				]
+			},
+			"created": 1535818191511,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_748a755c3185412e9dd3d5698cd0980c",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				},
+				{
+					"id": "pair_8f444e4a0eb04bfeab5a4c86152d8539",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535819539423.75,
+			"method": "POST",
+			"modified": 1535824267021,
+			"name": "Test - Upload to Quiz",
+			"parameters": [],
+			"parentId": "fld_018699bb76fc48a097dd948dab991981",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://canvas.instructure.com/courses/1374512/quizzes/3219553/submissions/self/files",
+			"_type": "request"
+		},
+		{
+			"_id": "req_2737f49c753d4e96898fb1093a198ed7",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"disabled": false,
+						"id": "pair_215e9c73330c4b7e8011590180086753",
+						"name": "submission[submission_type]",
+						"value": "online_upload"
+					},
+					{
+						"disabled": false,
+						"id": "pair_6320007442814b5f8c8b632171a4f176",
+						"name": "submission[file_ids][]",
+						"value": "68249165"
+					},
+					{
+						"disabled": false,
+						"id": "pair_7396e62dc73a4361897d915ebc11ff28",
+						"name": "comment[text_comment]",
+						"value": "\"Gostaria de dizer que isto é um comentário\""
+					}
+				]
+			},
+			"created": 1535824478911,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_b199239eb81149c5847eeff7ae74a5eb",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				},
+				{
+					"id": "pair_a1837a3b9c5241539ea114d6ac5a401d",
+					"name": "Authorization",
+					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1535824478911,
+			"method": "POST",
+			"modified": 1535826161293,
+			"name": "Online File Submission",
+			"parameters": [],
+			"parentId": "fld_5952dac78809460d9fe9679e7aa10682",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://canvas.instructure.com/api/v1/courses/1374512/assignments/9537389/submissions/",
+			"_type": "request"
+		}
+	]
+}
