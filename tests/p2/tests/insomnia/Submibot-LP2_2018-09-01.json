@@ -146,7 +146,7 @@
 				{
 					"id": "pair_748a755c3185412e9dd3d5698cd0980c",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				},
 				{
 					"id": "pair_8f444e4a0eb04bfeab5a4c86152d8539",
@@ -201,7 +201,7 @@
 				{
 					"id": "pair_8aac19de72b1447eba6d90140f397504",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				},
 				{
 					"id": "pair_03984af4ced84ea599b421eb5da5b49f",
@@ -235,7 +235,7 @@
 				{
 					"id": "pair_91969e0150024f5090485d1346847d5b",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				}
 			],
 			"isPrivate": false,
@@ -264,7 +264,7 @@
 				{
 					"id": "pair_eb202ace53744f91add6b589f0eb82ef",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				}
 			],
 			"isPrivate": false,
@@ -293,7 +293,7 @@
 				{
 					"id": "pair_495c1c0e3f96407594eca54aa8021409",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				}
 			],
 			"isPrivate": false,
@@ -322,7 +322,7 @@
 				{
 					"id": "pair_6c38c2fbab03423386dde22fc1368585",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				}
 			],
 			"isPrivate": false,
@@ -351,7 +351,7 @@
 				{
 					"id": "pair_d69cbc9281b84cdfb106b90c912a25f9",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				}
 			],
 			"isPrivate": false,
@@ -404,7 +404,7 @@
 				{
 					"id": "pair_748a755c3185412e9dd3d5698cd0980c",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				},
 				{
 					"id": "pair_8f444e4a0eb04bfeab5a4c86152d8539",
@@ -459,7 +459,7 @@
 				{
 					"id": "pair_8aac19de72b1447eba6d90140f397504",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				},
 				{
 					"id": "pair_03984af4ced84ea599b421eb5da5b49f",
@@ -517,7 +517,7 @@
 				{
 					"id": "pair_748a755c3185412e9dd3d5698cd0980c",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				},
 				{
 					"id": "pair_8f444e4a0eb04bfeab5a4c86152d8539",
@@ -572,7 +572,7 @@
 				{
 					"id": "pair_8aac19de72b1447eba6d90140f397504",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				},
 				{
 					"id": "pair_03984af4ced84ea599b421eb5da5b49f",
@@ -630,7 +630,7 @@
 				{
 					"id": "pair_748a755c3185412e9dd3d5698cd0980c",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				},
 				{
 					"id": "pair_8f444e4a0eb04bfeab5a4c86152d8539",
@@ -691,7 +691,7 @@
 				{
 					"id": "pair_a1837a3b9c5241539ea114d6ac5a401d",
 					"name": "Authorization",
-					"value": "Bearer 7~P8NctVMFwiLKZeP73EiRzObXGpfMlPQLiDBqmmAd7Lhojzm6ylYU4As0hW9GEkAQ"
+					"value": "{{insert the token here}}"
 				}
 			],
 			"isPrivate": false,

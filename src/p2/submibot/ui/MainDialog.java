@@ -79,8 +79,6 @@ public class MainDialog extends TitleAreaDialog {
 			createSubmitingAs(container, this.firstName + " " + this.lastName);
 		}
 
-		System.out.println(this.firstName + " " + this.lastName);
-
 		createCombo(container);
 
 		return area;
