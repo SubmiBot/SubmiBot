@@ -130,14 +130,6 @@ public class MainDialog extends TitleAreaDialog {
 			currentUserText = new Text(container, SWT.NONE | SWT.READ_ONLY);
 			currentUserText.setLayoutData(currentUserData);
 			currentUserText.setText(user);
-		
-//		GridData currentUserGrid = new GridData();
-//		currentUserGrid.grabExcessHorizontalSpace = true;
-//		currentUserGrid.horizontalAlignment = GridData.FILL;
-//
-//		currentUserText = new Text(container, SWT.None);
-//		currentUserText.setLayoutData(currentUserGrid);
-//		currentUserText.setText("Submetendo como: " + user);
 	}
 
 	private void createCombo(Composite container) {
