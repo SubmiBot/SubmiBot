@@ -69,11 +69,13 @@ public class CredentialsManager {
 		
 		case Window.OK:
 			saveCredentials(dialog);
-			Persistence.writeUserInfo(nome, sobrenome, token);
+			if (uInfo == null) {
+				Persistence.writeUserInfo(nome, sobrenome, token);
+			}
 			break;
 		default:
 			dialog.cancelPressed();
-		}
+		}	
 
 		return dialog.getStatus() == SWT.CANCEL ? CANCEL : dialog.getRequests();
 	}
