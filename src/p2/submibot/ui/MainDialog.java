@@ -30,11 +30,14 @@ public class MainDialog extends TitleAreaDialog {
 
 	private Text firstNameText, lastNameText, currentUserText;
 
+	
 	private String firstName, lastName, token, assignment;
 
 	private List<Assignment> assignments;
 
 	private Requests request;
+
+	private UserInfo uInfo;
 
 	private int status;
 
@@ -42,13 +45,12 @@ public class MainDialog extends TitleAreaDialog {
 		super(parentShell);
 		this.token = token;
 		this.status = SWT.OPEN;
-		this.request = new Requests(token, /* "1374512" */ "1388632" /* p2-plugin-test/LP2-2018.2 */);
+		this.request = new Requests(token, "1388632");
 	}
 
 	public MainDialog(Shell parentShell, String token, UserInfo uInfo) throws IOException {
 		this(parentShell, uInfo.getToken());
-		this.firstName = uInfo.getName();
-		this.lastName = uInfo.getSurname();
+		this.uInfo = uInfo;
 	}
 
 	@Override
@@ -72,11 +74,11 @@ public class MainDialog extends TitleAreaDialog {
 
 		container.setLayout(layout);
 
-		if (this.lastName == null || this.firstName == null) {
+		if (uInfo == null) {
 			createFirstName(container);
 			createLastName(container);
 		} else {
-			createSubmitingAs(container, this.firstName + " " + this.lastName);
+			createSubmitingAs(container, this.uInfo.getName() + " " + this.uInfo.getSurname());
 		}
 
 		createCombo(container);
@@ -120,16 +122,16 @@ public class MainDialog extends TitleAreaDialog {
 	}
 
 	private void createSubmitingAs(Composite container, String user) {
-			Label currentUser = new Label(container, SWT.NONE);
-			currentUser.setText("Submetendo como:");
+		Label currentUser = new Label(container, SWT.NONE);
+		currentUser.setText("Submetendo como:");
 
-			GridData currentUserData = new GridData();
-			currentUserData.grabExcessHorizontalSpace = true;
-			currentUserData.horizontalAlignment = GridData.FILL;
+		GridData currentUserData = new GridData();
+		currentUserData.grabExcessHorizontalSpace = true;
+		currentUserData.horizontalAlignment = GridData.FILL;
 
-			currentUserText = new Text(container, SWT.NONE | SWT.READ_ONLY);
-			currentUserText.setLayoutData(currentUserData);
-			currentUserText.setText(user);
+		currentUserText = new Text(container, SWT.NONE | SWT.READ_ONLY);
+		currentUserText.setLayoutData(currentUserData);
+		currentUserText.setText(user);
 	}
 
 	private void createCombo(Composite container) {
@@ -177,6 +179,7 @@ public class MainDialog extends TitleAreaDialog {
 	}
 
 	private void saveInput() {
+		System.out.println("oi");
 		this.firstName = catchText(firstNameText);
 		this.lastName = catchText(lastNameText);
 
@@ -187,6 +190,8 @@ public class MainDialog extends TitleAreaDialog {
 				e.printStackTrace();
 			}
 		}
+		
+		if (this.uInfo != null) setStoredInfo();
 	}
 
 	private String catchText(Text text) {
@@ -206,7 +211,12 @@ public class MainDialog extends TitleAreaDialog {
 			super.cancelPressed();
 		}
 	}
-
+	
+	private void setStoredInfo() {
+		this.firstName = uInfo.getName();
+		this.lastName = uInfo.getSurname();
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
